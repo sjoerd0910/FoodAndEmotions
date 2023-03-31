@@ -57,18 +57,7 @@
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script>
 
-        $(document).ready(function () {
-            var val;
-            var inte = setInterval(function () {
-                val = $('#slider').val();
-                val = parseInt(val) + 10000000000;
-                $('#slider').val(val);
-                $('#value').val(val);
-                if (val > $('#slider').attr('max')) {
-                    clearInterval(inte);
-                }
-            }, 10000);
-        });
+
 
         let myData;
         let height = 700;
