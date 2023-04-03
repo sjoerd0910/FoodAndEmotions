@@ -53,10 +53,11 @@
         <p>Value: <span id="demo"></span></p>
     </div>
 
+    <div class="mainsvg"></div>
+
 
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script>
-
 
 
         let myData;
@@ -69,6 +70,14 @@
             left: 50,
             bottom: 30
         };
+
+
+        //essential for hover functionality
+        let tooltip = d3.select(".mainsvg")
+            .append("div")
+            .style("opacity", 0)
+            .attr("class", "tooltip")
+            ;
 
 
         (async function () {
@@ -131,7 +140,7 @@
         }
 
 
-        let svg = d3.select("body").append("svg")
+        let svg = d3.select(".mainsvg").append("svg")
             .attr("viewBox", `0 0 ${width} ${height}`)
             .style("width", width)
             .style("height", height)
@@ -158,24 +167,18 @@
             .style("color", "black")
             .call(d3.axisLeft(yScale));
 
+
+
+
         function makeVisual() {
 
             d3.selectAll("circle").remove();
 
-
             let svg = d3.select("svg")
-
-
-
 
             let update = axisContainer.selectAll("circle").data(finalArray);
 
-
-
             let enter = update.enter();
-
-
-
 
 
             enter.append("circle")
@@ -185,7 +188,8 @@
                 .attr("cy", d => yScale(d.Happy))
                 .attr("r", 2)
                 .attr("class", "happy")
-                .style("fill", "orange");
+                .style("fill", "orange")
+                ;
 
             enter.append("circle")
                 .attr("cx", function (d, i) {
@@ -227,11 +231,35 @@
                 })
                 .attr("cy", d => yScale(d.Disgusted))
                 .attr("r", 2)
-                .style("fill", "black");
+                .style("fill", "black")
+                ;
 
             //let exit = update.exit().remove();
 
+
+
+            //essential for hover functionality
+            d3.selectAll("circle")
+                .on("mouseover", function (event, d) {
+                    tooltip.transition()
+                        .duration(200)
+                        .style("opacity", 1);
+
+                    tooltip.html(`Participant: ${d.Participant} <br/> Gender: ${d.Gender} <br/> Age: ${d.Age}`)
+                        .style("left", (event.pageX) + "px")
+                        .style("top", (event.pageY - 28) + "px")
+                    console.log(" appart dit zou de participant moeten zijn bij het bolletje ", d.Participant)
+                        ;
+                })
+                .on("mouseout", function (d) {
+                    tooltip.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                })
+                ;
+
         }
+
     </script>
 
 
