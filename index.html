@@ -70,6 +70,13 @@
             bottom: 30
         };
 
+        //essential for hover functionality
+        let tooltip = d3.select("body")
+            .append("div")
+            .style("opacity", 0)
+            .attr("class", "tooltip")
+            ;
+
 
         (async function () {
 
@@ -241,6 +248,31 @@
                 .attr("r", 2)
                 .attr("class", "disgusted")
                 .style("fill", "black");
+
+
+
+
+            //essential for hover functionality
+            d3.selectAll("circle")
+                .on("mouseover", function (event, d) {
+                    tooltip.transition()
+                        .duration(200)
+                        .style("opacity", 1);
+
+                    tooltip.html(`Participant: ${d.Participant} <br/> Gender: ${d.Gender} <br/> Age: ${d.Age}`)
+                        .style("left", (event.pageX) + "px")
+                        .style("top", (event.pageY - 28) + "px")
+                    console.log(" appart dit zou de participant moeten zijn bij het bolletje ", d.Participant)
+                        ;
+                })
+                .on("mouseout", function (d) {
+                    tooltip.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                })
+                ;
+
+
         }
     </script>
 
