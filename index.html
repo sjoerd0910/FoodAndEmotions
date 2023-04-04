@@ -43,6 +43,24 @@
             background: #04AA6D;
             cursor: pointer;
         }
+
+        .tooltip {
+
+            display: block;
+
+            position: absolute;
+
+            background-color: white;
+
+            border: solid 1px #eee;
+
+            border-radius: 5px;
+
+            padding: 5px;
+
+            pointer-events: none;
+
+        }
     </style>
 </head>
 
@@ -52,6 +70,10 @@
         <input type="range" min="0" max="20000" value="0" class="slider" id="myRange">
         <p>Value: <span id="demo"></span></p>
     </div>
+
+    <div class="grafiek">
+
+    </div>>
 
 
     <script src="https://d3js.org/d3.v6.min.js"></script>
@@ -71,11 +93,11 @@
         };
 
         //essential for hover functionality
-        let tooltip = d3.select("body")
-            .append("div")
-            .style("opacity", 0)
-            .attr("class", "tooltip")
-            ;
+        // let tooltip = d3.select(".grafiek")
+        //     .append("div")
+        //     .style("opacity", 0)
+        //     .attr("class", "tooltip")
+        //     ;
 
 
         (async function () {
@@ -138,7 +160,7 @@
         }
 
 
-        let svg = d3.select("body").append("svg")
+        let svg = d3.select(".grafiek").append("svg")
             .attr("viewBox", `0 0 ${width} ${height}`)
             .style("width", width)
             .style("height", height)
@@ -165,10 +187,16 @@
             .style("color", "black")
             .call(d3.axisLeft(yScale));
 
-        
-        
-        
-        function updateVisual(){
+
+        //essential for hover functionality
+        let tooltip = d3.select(".grafiek")
+            .append("div")
+            .style("opacity", 0)
+            .attr("class", "tooltip")
+            ;
+
+
+        function updateVisual() {
             let happy = axisContainer.selectAll(".happy").data(finalArray);
             happy.transition().attr("cy", d => yScale(d.Happy));
 
@@ -187,9 +215,9 @@
             let disgusted = axisContainer.selectAll(".disgusted").data(finalArray);
             disgusted.transition().attr("cy", d => yScale(d.Disgusted));
         }
-        
-        
-        
+
+
+
         function makeVisual() {
             let svg = d3.select("svg")
 
@@ -197,58 +225,57 @@
 
             enter.append("circle")
                 .attr("cx", function (d, i) {
-                    return Math.floor(Math.random() * (width - margin.left - margin.right));
+                    return Math.floor(Math.random() * (500 - margin.left - margin.right));
                 })
                 .attr("cy", d => yScale(d.Happy))
-                .attr("r", 2)
+                .attr("r", 4)
                 .attr("class", "happy")
                 .style("fill", "orange");
 
             enter.append("circle")
                 .attr("cx", function (d, i) {
-                    return Math.floor(Math.random() * (width - margin.left - margin.right));
+                    return Math.floor(Math.random() * (500 - margin.left - margin.right));
                 })
                 .attr("cy", d => yScale(d.Sad))
-                .attr("r", 2)
+                .attr("r", 4)
                 .attr("class", "sad")
                 .style("fill", "blue");
 
             enter.append("circle")
                 .attr("cx", function (d, i) {
-                    return Math.floor(Math.random() * (width - margin.left - margin.right));
+                    return Math.floor(Math.random() * (500 - margin.left - margin.right));
                 })
                 .attr("cy", d => yScale(d.Angry))
-                .attr("r", 2)
+                .attr("r", 4)
                 .attr("class", "angry")
                 .style("fill", "red");
 
             enter.append("circle")
                 .attr("cx", function (d, i) {
-                    return Math.floor(Math.random() * (width - margin.left - margin.right));
+                    return Math.floor(Math.random() * (500 - margin.left - margin.right));
                 })
                 .attr("cy", d => yScale(d.Surprised))
-                .attr("r", 2)
+                .attr("r", 4)
                 .attr("class", "surprised")
                 .style("fill", "green");
 
             enter.append("circle")
                 .attr("cx", function (d, i) {
-                    return Math.floor(Math.random() * (width - margin.left - margin.right));
+                    return Math.floor(Math.random() * (500 - margin.left - margin.right));
                 })
                 .attr("cy", d => yScale(d.Scared))
-                .attr("r", 2)
+                .attr("r", 4)
                 .attr("class", "scared")
                 .style("fill", "purple");
 
             enter.append("circle")
                 .attr("cx", function (d, i) {
-                    return Math.floor(Math.random() * (width - margin.left - margin.right));
+                    return Math.floor(Math.random() * (500 - margin.left - margin.right));
                 })
                 .attr("cy", d => yScale(d.Disgusted))
-                .attr("r", 2)
+                .attr("r", 4)
                 .attr("class", "disgusted")
                 .style("fill", "black");
-
 
 
 
