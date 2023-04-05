@@ -179,7 +179,9 @@ function makeVisual() {
         .attr("cx", function (d, i) {
             let individualWidth = (width - margin.inbetween - margin.inbetween - margin.left - margin.right) / 3;
             if (d.EventMarker == "P1") {
-                return Math.floor(Math.random() * (individualWidth + 1));
+                let number = Math.floor(Math.random() * (individualWidth + 1));
+                console.log(number);
+                return number;
 
             }
             else if (d.EventMarker == "P2") {
@@ -205,7 +207,7 @@ function makeVisual() {
                 .duration(200)
                 .style("opacity", 1);
 
-            tooltip.html(`Participant: ${d.Participant} <br/> Gender: ${d.Gender} <br/> Age: ${d.Age}`)
+            tooltip.html(`Participant: ${d.Participant} <br/> Gender: ${d.Gender} <br/> Age: ${d.Age} <br/> Drink: ${d.EventMarker}`)
                 .style("left", (event.pageX) + "px")
                 .style("top", (event.pageY - 28) + "px");
         })

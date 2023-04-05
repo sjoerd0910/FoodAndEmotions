@@ -1,7 +1,6 @@
+// Get slider and playbutton
 const slider = document.getElementById("timeSlider");
 const playButton = document.getElementById("playButton");
-
-
 
 // Set the initial value of the slider and its range
 const minValue = 0;
@@ -29,8 +28,8 @@ playButton.addEventListener("click", function () {
 
 // Define the function to update the slider value
 function updateSlider() {
-    // Increment the value by 1
-    value += 5;
+    // Increment the value by 10
+    value += 10; // This can be changed to larger or smaller steps per 10 ms
 
 
     // Check if the value has exceeded the maximum value
@@ -46,14 +45,14 @@ function updateSlider() {
 }
 
 
-// Start the interval timer to update the slider every 1 second (1000ms)
+// Start the interval timer to update the slider every 0.01 second (10ms)
 setInterval(function () {
     if (isPlaying) { // Only update the slider if it's currently playing
         updateSlider();
     }
-}, 1);
+}, 10);
 
-
+// Define function when user clicks on slider
 slider.oninput = function () {
     value = this.value;
 
