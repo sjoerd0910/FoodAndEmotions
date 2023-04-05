@@ -5,304 +5,56 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cocktails and emotions</title>
 
-
-    <style>
-        .slidecontainer {
-            width: 100%;
-        }
-
-        .slider {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 25px;
-            background: #d3d3d3;
-            outline: none;
-            opacity: 0.7;
-            -webkit-transition: .2s;
-            transition: opacity .2s;
-        }
-
-        .slider:hover {
-            opacity: 1;
-        }
-
-        .slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 25px;
-            height: 25px;
-            background: #04AA6D;
-            cursor: pointer;
-        }
-
-        .slider::-moz-range-thumb {
-            width: 25px;
-            height: 25px;
-            background: #04AA6D;
-            cursor: pointer;
-        }
-
-        .tooltip {
-
-            display: block;
-
-            position: absolute;
-
-            background-color: white;
-
-            border: solid 1px #eee;
-
-            border-radius: 5px;
-
-            padding: 5px;
-
-            pointer-events: none;
-
-        }
-    </style>
+    <link rel="stylesheet" href="css/sliderfilterstyle.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-    <div class="slidecontainer">
-        <input type="range" min="0" max="20000" value="0" class="slider" id="myRange">
-        <p>Value: <span id="demo"></span></p>
+
+    <div id="topvisual">
+        <div class="scatterplot">
+            
+        </div>
+        <div class="checkboxes">
+            <input type="checkbox" id="checkboxHappy" value="Happy" checked> Happy
+            <br />
+            <input type="checkbox" id="checkboxSad" value="Sad" checked> Sad
+            <br />
+            <input type="checkbox" id="checkboxAngry" value="Angry" checked> Angry
+            <br />
+            <input type="checkbox" id="checkboxSurprised" value="Surprised" checked>
+            Surprised
+            <br />
+            <input type="checkbox" id="checkboxScared" value="Scared" checked> Scared
+            <br />
+            <input type="checkbox" id="checkboxDisgusted" value="Disgusted" checked>
+            Disgusted
+            <br />
+            <input type="checkbox" id="checkboxNeutral" value="Neutral"> Neutral
+            <br />
+            <br />
+            <br />
+            <input type="checkbox" id="checkboxFemale" class="checkboxgender" checked> Female
+            <br />
+            <input type="checkbox" id="checkboxMale" class="checkboxgender" checked> Male
+            <br />
+            <button id="playButton">Pause</button>
+        </div>
     </div>
 
-    <div class="grafiek">
+    <div class="slidecontainer">
+        <input type="range" class="slider" id="timeSlider">
 
-    </div>>
-
+    </div>
 
     <script src="https://d3js.org/d3.v6.min.js"></script>
-    <script>
-
-
-
-        let myData;
-        let height = 700;
-        let width = 1500;
-
-        let margin = {
-            top: 30,
-            right: 50,
-            left: 50,
-            bottom: 30
-        };
-
-        //essential for hover functionality
-        // let tooltip = d3.select(".grafiek")
-        //     .append("div")
-        //     .style("opacity", 0)
-        //     .attr("class", "tooltip")
-        //     ;
-
-
-        (async function () {
-
-            myData = await d3.csv("data.csv");
-            loadData(1);
-            makeVisual();
-
-        })()
-
-
-        let slider = document.getElementById("myRange");
-        let output = document.getElementById("demo");
-        output.innerHTML = slider.value;
-        let finalArray = [];
-
-
-
-
-        slider.oninput = function () {
-            output.innerHTML = this.value;
-
-            loadData(this.value);
-
-            updateVisual();
-
-        }
-
-        function loadData(value) {
-            const type = "P1";
-            let participantArray = [];
-            let previousParticipant;
-            finalArray = [];
-
-            for (let i = 0; i < myData.length; i++) {
-                if (myData[i].Participant == previousParticipant) {
-                    if (myData[i].EventMarker == type) {
-                        participantArray.push(myData[i]);
-                        previousParticipant = myData[i].Participant;
-                    }
-                }
-                else {
-                    if (participantArray.length != 0) {
-                        let scale = 20000 / participantArray.length;
-                        let index = Math.floor(value / scale);
-                        console.log(index);
-                        finalArray.push(participantArray[index]);
-                        participantArray = [];
-                    }
-                    participantArray.push(myData[i]);
-
-                    previousParticipant = myData[i].Participant;
-                }
-            }
-            if (participantArray != []) {
-                let scale = 20000 / participantArray.length;
-                let index = Math.floor(value / scale);
-                finalArray.push(participantArray[index]);
-            }
-        }
-
-
-        let svg = d3.select(".grafiek").append("svg")
-            .attr("viewBox", `0 0 ${width} ${height}`)
-            .style("width", width)
-            .style("height", height)
-            .style("background", "white");
-
-
-        const xScale = d3.scaleBand()
-            .domain(["Cocktail 1"])
-            .range([0, width - margin.left - margin.right]);
-
-        const yScale = d3.scaleLinear()
-            .domain([0, 1])
-            .range([height - margin.bottom - margin.top, 0]);
-
-        const axisContainer = svg.append("g")
-            .attr("transform", `translate(${margin.left}, ${margin.top})`);
-
-        axisContainer.append("g")
-            .attr("transform", `translate(0, ${height - margin.top - margin.bottom})`)
-            .style("color", "black")
-            .call(d3.axisBottom(xScale));
-
-        axisContainer.append("g")
-            .style("color", "black")
-            .call(d3.axisLeft(yScale));
-
-
-        //essential for hover functionality
-        let tooltip = d3.select(".grafiek")
-            .append("div")
-            .style("opacity", 0)
-            .attr("class", "tooltip")
-            ;
-
-
-        function updateVisual() {
-            let happy = axisContainer.selectAll(".happy").data(finalArray);
-            happy.transition().attr("cy", d => yScale(d.Happy));
-
-            let sad = axisContainer.selectAll(".sad").data(finalArray);
-            sad.transition().attr("cy", d => yScale(d.Sad));
-
-            let angry = axisContainer.selectAll(".angry").data(finalArray);
-            angry.transition().attr("cy", d => yScale(d.Angry));
-
-            let surprised = axisContainer.selectAll(".surprised").data(finalArray);
-            surprised.transition().attr("cy", d => yScale(d.Surprised));
-
-            let scared = axisContainer.selectAll(".scared").data(finalArray);
-            scared.transition().attr("cy", d => yScale(d.Scared));
-
-            let disgusted = axisContainer.selectAll(".disgusted").data(finalArray);
-            disgusted.transition().attr("cy", d => yScale(d.Disgusted));
-        }
-
-
-
-        function makeVisual() {
-            let svg = d3.select("svg")
-
-            let enter = axisContainer.selectAll("circle").data(finalArray).enter();
-
-            enter.append("circle")
-                .attr("cx", function (d, i) {
-                    return Math.floor(Math.random() * (500 - margin.left - margin.right));
-                })
-                .attr("cy", d => yScale(d.Happy))
-                .attr("r", 4)
-                .attr("class", "happy")
-                .style("fill", "orange");
-
-            enter.append("circle")
-                .attr("cx", function (d, i) {
-                    return Math.floor(Math.random() * (500 - margin.left - margin.right));
-                })
-                .attr("cy", d => yScale(d.Sad))
-                .attr("r", 4)
-                .attr("class", "sad")
-                .style("fill", "blue");
-
-            enter.append("circle")
-                .attr("cx", function (d, i) {
-                    return Math.floor(Math.random() * (500 - margin.left - margin.right));
-                })
-                .attr("cy", d => yScale(d.Angry))
-                .attr("r", 4)
-                .attr("class", "angry")
-                .style("fill", "red");
-
-            enter.append("circle")
-                .attr("cx", function (d, i) {
-                    return Math.floor(Math.random() * (500 - margin.left - margin.right));
-                })
-                .attr("cy", d => yScale(d.Surprised))
-                .attr("r", 4)
-                .attr("class", "surprised")
-                .style("fill", "green");
-
-            enter.append("circle")
-                .attr("cx", function (d, i) {
-                    return Math.floor(Math.random() * (500 - margin.left - margin.right));
-                })
-                .attr("cy", d => yScale(d.Scared))
-                .attr("r", 4)
-                .attr("class", "scared")
-                .style("fill", "purple");
-
-            enter.append("circle")
-                .attr("cx", function (d, i) {
-                    return Math.floor(Math.random() * (500 - margin.left - margin.right));
-                })
-                .attr("cy", d => yScale(d.Disgusted))
-                .attr("r", 4)
-                .attr("class", "disgusted")
-                .style("fill", "black");
-
-
-
-            //essential for hover functionality
-            d3.selectAll("circle")
-                .on("mouseover", function (event, d) {
-                    tooltip.transition()
-                        .duration(200)
-                        .style("opacity", 1);
-
-                    tooltip.html(`Participant: ${d.Participant} <br/> Gender: ${d.Gender} <br/> Age: ${d.Age}`)
-                        .style("left", (event.pageX) + "px")
-                        .style("top", (event.pageY - 28) + "px")
-                    console.log(" appart dit zou de participant moeten zijn bij het bolletje ", d.Participant)
-                        ;
-                })
-                .on("mouseout", function (d) {
-                    tooltip.transition()
-                        .duration(500)
-                        .style("opacity", 0);
-                })
-                ;
-
-
-        }
-    </script>
-
+    <script src="js/filters.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/loaddata.js"></script>
+    <script src="js/visual.js"></script>
 
 </body>
 
