@@ -7,8 +7,17 @@ const scaredBox = document.getElementById('checkboxScared');
 const disgustedBox = document.getElementById('checkboxDisgusted');
 const neutralBox = document.getElementById('checkboxNeutral');
 
+// Get all checkbox elements for each gender
+let femaleBox = document.getElementById('checkboxFemale');
+let maleBox = document.getElementById('checkboxMale');
 
+// Get all checkbox elements for each age range
+const age1825Box = document.getElementById('checkbox1825');
+const age2635Box = document.getElementById('checkbox2635');
+const age3645Box = document.getElementById('checkbox3645');
+const age46Box = document.getElementById('checkbox46');
 
+// Define EventListeners emotions
 
 // Listens for events happening on happyBox checkbox
 happyBox.addEventListener('change', (event) => {
@@ -102,24 +111,102 @@ neutralBox.addEventListener('change', (event) => {
     }
 })
 
-const femaleBox = document.getElementById('checkboxFemale');
-let femaleCheck = true;
+// Define EventListeners genders
+
+// Listens for events happening on femaleBox checkbox
 femaleBox.addEventListener('change', (event) => {
     if (event.currentTarget.checked) {
-        femaleCheck = true;
-
+        // Removes all circles, loads new data based on filters and creates new visual
         svg.selectAll("circle").remove();
-
+        loadData();
         makeVisual();
 
     } else {
-        femaleCheck = false;
-
-        svg.selectAll(function (d, i) {
-            if (d.Gender == Female) {
-                svg.selectAll().remove();
-            }
-        });
+        // Removes all circles, loads new data based on filters and creates new visual
+        svg.selectAll("circle").remove();
+        loadData();
+        makeVisual();
     }
 })
-//
+
+// Listens for events happening on maleBox checkbox
+maleBox.addEventListener('change', (event) => {
+    if (event.currentTarget.checked) {
+        // Removes all circles, loads new data based on filters and creates new visual
+        svg.selectAll("circle").remove();
+        loadData();
+        makeVisual();
+
+    } else {
+        // Removes all circles, loads new data based on filters and creates new visual
+        svg.selectAll("circle").remove();
+        loadData();
+        makeVisual();
+    }
+})
+
+// Define EventListeners ages
+
+// Listens for events happening on age1825Box checkbox
+age1825Box.addEventListener('change', (event) => {
+    if (event.currentTarget.checked) {
+        // Removes all circles, loads new data based on filters and creates new visual
+        svg.selectAll("circle").remove();
+        loadData();
+        makeVisual();
+
+    } else {
+        // Removes all circles, loads new data based on filters and creates new visual
+        svg.selectAll("circle").remove();
+        loadData();
+        makeVisual();
+    }
+})
+
+// Listens for events happening on age2635Box checkbox
+age2635Box.addEventListener('change', (event) => {
+    if (event.currentTarget.checked) {
+        // Removes all circles, loads new data based on filters and creates new visual
+        svg.selectAll("circle").remove();
+        loadData();
+        makeVisual();
+
+    } else {
+        // Removes all circles, loads new data based on filters and creates new visual
+        svg.selectAll("circle").remove();
+        loadData();
+        makeVisual();
+    }
+})
+
+// Listens for events happening on age3645Box checkbox
+age3645Box.addEventListener('change', (event) => {
+    if (event.currentTarget.checked) {
+        // Removes all circles, loads new data based on filters and creates new visual
+        svg.selectAll("circle").remove();
+        loadData();
+        makeVisual();
+
+    } else {
+        // Removes all circles, loads new data based on filters and creates new visual
+        svg.selectAll("circle").remove();
+        loadData();
+        makeVisual();
+    }
+})
+
+// Listens for events happening on age46Box checkbox
+age46Box.addEventListener('change', (event) => {
+    if (event.currentTarget.checked) {
+        // Removes all circles, loads new data based on filters and creates new visual
+        svg.selectAll("circle").remove();
+        loadData();
+        makeVisual();
+
+    } else {
+        // Removes all circles, loads new data based on filters and creates new visual
+        svg.selectAll("circle").remove();
+        loadData();
+        makeVisual();
+    }
+})

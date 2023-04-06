@@ -4,9 +4,12 @@
 
 .slider {
     -webkit-appearance: none;
-    width: 100%;
+    appearance: none;
+    margin-left: 1%;
+    margin-right: 1%;
+    width: 98%;
     height: 25px;
-    background: #d3d3d3;
+    background: #5C5C5C;
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
@@ -22,14 +25,14 @@
     appearance: none;
     width: 25px;
     height: 25px;
-    background: #04AA6D;
+    background: #919090;
     cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
-    background: #04AA6D;
+    background: #919090;
     cursor: pointer;
 }
 
@@ -43,49 +46,114 @@
     pointer-events: none;
 }
 
+#topvisual {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
 
-.scatterplot {
-    width: 90%;
-    float: left;
+.scatterplot-container {
+    flex-basis: calc(88%);
+
 }
 
 .checkboxes {
-    width: 10%;
-    float: right;
+    flex-grow: 1;
+    background-color: #5C5C5C;
+    border-radius: 10px;
+    padding: 0.5%;
+}
+
+.checkbox {
+    display: flex;
+    margin-bottom: 5%;
+}
+
+.checkboxesHeaderText{
+    color: #F1F1F1;
+    font-weight: 700;
+    font-size: 1.5em;
+    margin-bottom: 5%;
+}
+
+.checkboxText{
+    margin-left: 0.5em;
+    color: #F1F1F1;
+}
+
+#playButton {
+    width: 100%;
+    height: 2em;
+    font-family: 'Open Sans', sans-serif;
 }
 
 svg {
     width: 100%;
+    background: transparent;
 }
 
-#checkboxHappy{
-    accent-color: orange;
+g {
+    color: whitesmoke;
 }
 
-#checkboxSad{
-    accent-color: blue;
-}
-
-#checkboxAngry{
-    accent-color: red;
-}
-
-#checkboxSurprised{
+#checkboxHappy {
     accent-color: green;
 }
 
-#checkboxScared{
+#checkboxSad {
+    accent-color: blue;
+}
+
+#checkboxAngry {
+    accent-color: red;
+}
+
+#checkboxSurprised {
+    accent-color: yellow;
+}
+
+#checkboxScared {
+    accent-color: orange;
+}
+
+#checkboxDisgusted {
     accent-color: purple;
 }
 
-#checkboxDisgusted{
-    accent-color: black;
+#checkboxNeutral {
+    accent-color: grey;
+    margin-bottom: 10%;
 }
 
-#checkboxNeutral{
-    accent-color: lightgrey;
+#checkboxMale{
+    margin-bottom: 10%;
 }
 
-.checkboxgender{
-    accent-color: #a5a37e;
+.happy {
+    fill: green;
+}
+
+.sad {
+    fill: blue;
+}
+
+.angry {
+    fill: red;
+}
+
+.surprised {
+    fill: yellow;
+}
+
+.scared {
+    fill: orange;
+}
+
+.disgusted {
+    fill: purple;
+}
+
+.neutral {
+    fill: grey;
 }

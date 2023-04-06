@@ -7,47 +7,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cocktails and emotions</title>
 
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/sliderfilterstyle.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
+    <h1>
+        Cocktails & Emotions trough time
+    </h1>
 
     <div id="topvisual">
-        <div class="scatterplot"> 
+        <div class="scatterplot-container">
+            <div class="scatterplot">
+            </div>
+            <div class="slidecontainer">
+                <input type="range" class="slider" id="timeSlider">
+            </div>
         </div>
         <div class="checkboxes">
-            <input type="checkbox" id="checkboxHappy" value="Happy" checked> Happy
-            <br />
-            <input type="checkbox" id="checkboxSad" value="Sad" checked> Sad
-            <br />
-            <input type="checkbox" id="checkboxAngry" value="Angry" checked> Angry
-            <br />
-            <input type="checkbox" id="checkboxSurprised" value="Surprised" checked>
-            Surprised
-            <br />
-            <input type="checkbox" id="checkboxScared" value="Scared" checked> Scared
-            <br />
-            <input type="checkbox" id="checkboxDisgusted" value="Disgusted" checked>
-            Disgusted
-            <br />
-            <input type="checkbox" id="checkboxNeutral" value="Neutral"> Neutral
-            <br />
-            <br />
-            <br />
-            <input type="checkbox" id="checkboxFemale" class="checkboxgender" checked> Female
-            <br />
-            <input type="checkbox" id="checkboxMale" class="checkboxgender" checked> Male
-            <br />
-            <button id="playButton">Pause</button>
+            <p class="checkboxesHeaderText">Filters</p>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkboxHappy" value="Happy" checked>
+                <p class="checkboxText"> Happy</p>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkboxSad" value="Sad" checked>
+                <p class="checkboxText"> Sad</p>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkboxAngry" value="Angry" checked>
+                <p class="checkboxText"> Angry</p>
+            </div>
+            
+            <div class="checkbox">
+                <input type="checkbox" id="checkboxSurprised" value="Surprised" checked>
+                <p class="checkboxText"> Surprised</p>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkboxScared" value="Scared" checked>
+                <p class="checkboxText"> Scared</p>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkboxDisgusted" value="Disgusted" checked>
+                <p class="checkboxText"> Disgusted</p>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkboxNeutral" value="Neutral">
+                <p class="checkboxText"> Neutral</p>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkboxFemale" class="checkboxgender" checked>
+                <p class="checkboxText"> Female</p>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkboxMale" class="checkboxgender" checked>
+                <p class="checkboxText"> Male</p>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkbox1825" class="checkboxage" checked>
+                <p class="checkboxText"> 18-25</p>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkbox2635" class="checkboxage" checked>
+                <p class="checkboxText"> 26-35</p>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkbox3645" class="checkboxage" checked>
+                <p class="checkboxText"> 36-45</p>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkbox46" class="checkboxage" checked>
+                <p class="checkboxText"> 46+</p>
+            </div>
+
+            <button id="playButton"><p>Pause</p></button>
         </div>
     </div>
 
-    <div class="slidecontainer">
-        <input type="range" class="slider" id="timeSlider">
 
-    </div>
 
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="js/filters.js"></script>

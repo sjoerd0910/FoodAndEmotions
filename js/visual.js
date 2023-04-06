@@ -1,17 +1,18 @@
+// Set width and height for the SVG viewBox
 let height = 700;
 let width = 1500;
 
+// Set margins for the SVG
 let margin = {
     top: 30,
-    right: 50,
-    left: 50,
+    right: 20,
+    left: 20,
     bottom: 30,
-    inbetween: 150
+    inbetween: 100
 };
 
 let svg = d3.select(".scatterplot").append("svg")
     .attr("viewBox", `0 0 ${width} ${height}`)
-    .style("background", "white");
 
 
 const xScale = d3.scaleBand()
@@ -27,7 +28,6 @@ const axisContainer = svg.append("g")
 
 axisContainer.append("g")
     .attr("transform", `translate(0, ${height - margin.top - margin.bottom})`)
-    .style("color", "black")
     .call(d3.axisBottom(xScale));
 
 // axisContainer.append("g")
@@ -43,24 +43,27 @@ let tooltip = d3.select(".scatterplot")
 
 
 function updateVisual() {
-    loadData(value);
+    loadData();
     let happy = axisContainer.selectAll(".happy").data(finalArray);
-    happy.attr("cy", d => yScale(d.Happy));
+    happy.transition().duration(10).attr("cy", d => yScale(d.Happy));
 
     let sad = axisContainer.selectAll(".sad").data(finalArray);
-    sad.attr("cy", d => yScale(d.Sad));
+    sad.transition().duration(10).attr("cy", d => yScale(d.Sad));
 
     let angry = axisContainer.selectAll(".angry").data(finalArray);
-    angry.attr("cy", d => yScale(d.Angry));
+    angry.transition().duration(10).attr("cy", d => yScale(d.Angry));
 
     let surprised = axisContainer.selectAll(".surprised").data(finalArray);
-    surprised.attr("cy", d => yScale(d.Surprised));
+    surprised.transition().duration(10).attr("cy", d => yScale(d.Surprised));
 
     let scared = axisContainer.selectAll(".scared").data(finalArray);
-    scared.attr("cy", d => yScale(d.Scared));
+    scared.transition().duration(10).attr("cy", d => yScale(d.Scared));
 
     let disgusted = axisContainer.selectAll(".disgusted").data(finalArray);
-    disgusted.attr("cy", d => yScale(d.Disgusted));
+    disgusted.transition().duration(10).attr("cy", d => yScale(d.Disgusted));
+
+    let neutral = axisContainer.selectAll(".neutral").data(finalArray);
+    neutral.transition().duration(10).attr("cy", d => yScale(d.Neutral));
 }
 
 
@@ -70,133 +73,163 @@ function makeVisual() {
 
     let enter = axisContainer.selectAll("circle").data(finalArray).enter();
 
-    enter.append("circle")
-        .attr("cx", function (d, i) {
-            let individualWidth = (width - margin.inbetween - margin.inbetween - margin.left - margin.right) / 3;
-            if (d.EventMarker == "P1") {
-                return Math.floor(Math.random() * (individualWidth + 1));
+    if (happyBox.checked) {
+        enter.append("circle")
+            .attr("cx", function (d, i) {
+                let individualWidth = (width - margin.inbetween - margin.inbetween - margin.left - margin.right) / 3;
+                if (d.EventMarker == "P1") {
+                    return Math.floor(Math.random() * (individualWidth + 1));
 
-            }
-            else if (d.EventMarker == "P2") {
-                return Math.floor(Math.random() * ((individualWidth * 2 + margin.inbetween) - (individualWidth + margin.inbetween) + 1) + (individualWidth + margin.inbetween));
+                }
+                else if (d.EventMarker == "P2") {
+                    return Math.floor(Math.random() * ((individualWidth * 2 + margin.inbetween) - (individualWidth + margin.inbetween) + 1) + (individualWidth + margin.inbetween));
 
-            }
-            else {
-                return Math.floor(Math.random() * ((individualWidth * 3 + margin.inbetween * 2) - (individualWidth * 2 + margin.inbetween * 2) + 1) + (individualWidth * 2 + margin.inbetween * 2));
-            }
+                }
+                else {
+                    return Math.floor(Math.random() * ((individualWidth * 3 + margin.inbetween * 2) - (individualWidth * 2 + margin.inbetween * 2) + 1) + (individualWidth * 2 + margin.inbetween * 2));
+                }
 
-        })
-        .attr("cy", d => yScale(d.Happy))
-        .attr("r", 4)
-        .attr("class", "happy")
-        .style("fill", "orange");
+            })
+            .attr("cy", d => yScale(d.Happy))
+            .attr("r", 4)
+            .attr("class", "happy")
+    }
 
-    enter.append("circle")
-        .attr("cx", function (d, i) {
-            let individualWidth = (width - margin.inbetween - margin.inbetween - margin.left - margin.right) / 3;
-            if (d.EventMarker == "P1") {
-                return Math.floor(Math.random() * (individualWidth + 1));
+    if (sadBox.checked) {
+        enter.append("circle")
+            .attr("cx", function (d, i) {
+                let individualWidth = (width - margin.inbetween - margin.inbetween - margin.left - margin.right) / 3;
+                if (d.EventMarker == "P1") {
+                    return Math.floor(Math.random() * (individualWidth + 1));
 
-            }
-            else if (d.EventMarker == "P2") {
-                return Math.floor(Math.random() * ((individualWidth * 2 + margin.inbetween) - (individualWidth + margin.inbetween) + 1) + (individualWidth + margin.inbetween));
+                }
+                else if (d.EventMarker == "P2") {
+                    return Math.floor(Math.random() * ((individualWidth * 2 + margin.inbetween) - (individualWidth + margin.inbetween) + 1) + (individualWidth + margin.inbetween));
 
-            }
-            else {
-                return Math.floor(Math.random() * ((individualWidth * 3 + margin.inbetween * 2) - (individualWidth * 2 + margin.inbetween * 2) + 1) + (individualWidth * 2 + margin.inbetween * 2));
-            }
+                }
+                else {
+                    return Math.floor(Math.random() * ((individualWidth * 3 + margin.inbetween * 2) - (individualWidth * 2 + margin.inbetween * 2) + 1) + (individualWidth * 2 + margin.inbetween * 2));
+                }
 
-        })
-        .attr("cy", d => yScale(d.Sad))
-        .attr("r", 4)
-        .attr("class", "sad")
-        .style("fill", "blue");
+            })
+            .attr("cy", d => yScale(d.Sad))
+            .attr("r", 4)
+            .attr("class", "sad")
+    }
 
-    enter.append("circle")
-        .attr("cx", function (d, i) {
-            let individualWidth = (width - margin.inbetween - margin.inbetween - margin.left - margin.right) / 3;
-            if (d.EventMarker == "P1") {
-                return Math.floor(Math.random() * (individualWidth + 1));
+    if (angryBox.checked) {
+        enter.append("circle")
+            .attr("cx", function (d, i) {
+                let individualWidth = (width - margin.inbetween - margin.inbetween - margin.left - margin.right) / 3;
+                if (d.EventMarker == "P1") {
+                    return Math.floor(Math.random() * (individualWidth + 1));
 
-            }
-            else if (d.EventMarker == "P2") {
-                return Math.floor(Math.random() * ((individualWidth * 2 + margin.inbetween) - (individualWidth + margin.inbetween) + 1) + (individualWidth + margin.inbetween));
+                }
+                else if (d.EventMarker == "P2") {
+                    return Math.floor(Math.random() * ((individualWidth * 2 + margin.inbetween) - (individualWidth + margin.inbetween) + 1) + (individualWidth + margin.inbetween));
 
-            }
-            else {
-                return Math.floor(Math.random() * ((individualWidth * 3 + margin.inbetween * 2) - (individualWidth * 2 + margin.inbetween * 2) + 1) + (individualWidth * 2 + margin.inbetween * 2));
-            }
+                }
+                else {
+                    return Math.floor(Math.random() * ((individualWidth * 3 + margin.inbetween * 2) - (individualWidth * 2 + margin.inbetween * 2) + 1) + (individualWidth * 2 + margin.inbetween * 2));
+                }
 
-        })
-        .attr("cy", d => yScale(d.Angry))
-        .attr("r", 4)
-        .attr("class", "angry")
-        .style("fill", "red");
+            })
+            .attr("cy", d => yScale(d.Angry))
+            .attr("r", 4)
+            .attr("class", "angry")
+    }
 
-    enter.append("circle")
-        .attr("cx", function (d, i) {
-            let individualWidth = (width - margin.inbetween - margin.inbetween - margin.left - margin.right) / 3;
-            if (d.EventMarker == "P1") {
-                return Math.floor(Math.random() * (individualWidth + 1));
+    if (surprisedBox.checked) {
+        enter.append("circle")
+            .attr("cx", function (d, i) {
+                let individualWidth = (width - margin.inbetween - margin.inbetween - margin.left - margin.right) / 3;
+                if (d.EventMarker == "P1") {
+                    return Math.floor(Math.random() * (individualWidth + 1));
 
-            }
-            else if (d.EventMarker == "P2") {
-                return Math.floor(Math.random() * ((individualWidth * 2 + margin.inbetween) - (individualWidth + margin.inbetween) + 1) + (individualWidth + margin.inbetween));
+                }
+                else if (d.EventMarker == "P2") {
+                    return Math.floor(Math.random() * ((individualWidth * 2 + margin.inbetween) - (individualWidth + margin.inbetween) + 1) + (individualWidth + margin.inbetween));
 
-            }
-            else {
-                return Math.floor(Math.random() * ((individualWidth * 3 + margin.inbetween * 2) - (individualWidth * 2 + margin.inbetween * 2) + 1) + (individualWidth * 2 + margin.inbetween * 2));
-            }
+                }
+                else {
+                    return Math.floor(Math.random() * ((individualWidth * 3 + margin.inbetween * 2) - (individualWidth * 2 + margin.inbetween * 2) + 1) + (individualWidth * 2 + margin.inbetween * 2));
+                }
 
-        })
-        .attr("cy", d => yScale(d.Surprised))
-        .attr("r", 4)
-        .attr("class", "surprised")
-        .style("fill", "green");
+            })
+            .attr("cy", d => yScale(d.Surprised))
+            .attr("r", 4)
+            .attr("class", "surprised")
+    }
 
-    enter.append("circle")
-        .attr("cx", function (d, i) {
-            let individualWidth = (width - margin.inbetween - margin.inbetween - margin.left - margin.right) / 3;
-            if (d.EventMarker == "P1") {
-                return Math.floor(Math.random() * (individualWidth + 1));
+    if (scaredBox.checked) {
+        enter.append("circle")
+            .attr("cx", function (d, i) {
+                let individualWidth = (width - margin.inbetween - margin.inbetween - margin.left - margin.right) / 3;
+                if (d.EventMarker == "P1") {
+                    return Math.floor(Math.random() * (individualWidth + 1));
 
-            }
-            else if (d.EventMarker == "P2") {
-                return Math.floor(Math.random() * ((individualWidth * 2 + margin.inbetween) - (individualWidth + margin.inbetween) + 1) + (individualWidth + margin.inbetween));
+                }
+                else if (d.EventMarker == "P2") {
+                    return Math.floor(Math.random() * ((individualWidth * 2 + margin.inbetween) - (individualWidth + margin.inbetween) + 1) + (individualWidth + margin.inbetween));
 
-            }
-            else {
-                return Math.floor(Math.random() * ((individualWidth * 3 + margin.inbetween * 2) - (individualWidth * 2 + margin.inbetween * 2) + 1) + (individualWidth * 2 + margin.inbetween * 2));
-            }
+                }
+                else {
+                    return Math.floor(Math.random() * ((individualWidth * 3 + margin.inbetween * 2) - (individualWidth * 2 + margin.inbetween * 2) + 1) + (individualWidth * 2 + margin.inbetween * 2));
+                }
 
-        })
-        .attr("cy", d => yScale(d.Scared))
-        .attr("r", 4)
-        .attr("class", "scared")
-        .style("fill", "purple");
+            })
+            .attr("cy", d => yScale(d.Scared))
+            .attr("r", 4)
+            .attr("class", "scared")
+    }
 
-    enter.append("circle")
-        .attr("cx", function (d, i) {
-            let individualWidth = (width - margin.inbetween - margin.inbetween - margin.left - margin.right) / 3;
-            if (d.EventMarker == "P1") {
-                let number = Math.floor(Math.random() * (individualWidth + 1));
-                console.log(number);
-                return number;
+    if (disgustedBox.checked) {
+        enter.append("circle")
+            .attr("cx", function (d, i) {
+                let individualWidth = (width - margin.inbetween - margin.inbetween - margin.left - margin.right) / 3;
+                if (d.EventMarker == "P1") {
+                    let number = Math.floor(Math.random() * (individualWidth + 1));
+                    return number;
 
-            }
-            else if (d.EventMarker == "P2") {
-                return Math.floor(Math.random() * ((individualWidth * 2 + margin.inbetween) - (individualWidth + margin.inbetween) + 1) + (individualWidth + margin.inbetween));
+                }
+                else if (d.EventMarker == "P2") {
+                    return Math.floor(Math.random() * ((individualWidth * 2 + margin.inbetween) - (individualWidth + margin.inbetween) + 1) + (individualWidth + margin.inbetween));
 
-            }
-            else {
-                return Math.floor(Math.random() * ((individualWidth * 3 + margin.inbetween * 2) - (individualWidth * 2 + margin.inbetween * 2) + 1) + (individualWidth * 2 + margin.inbetween * 2));
-            }
+                }
+                else {
+                    return Math.floor(Math.random() * ((individualWidth * 3 + margin.inbetween * 2) - (individualWidth * 2 + margin.inbetween * 2) + 1) + (individualWidth * 2 + margin.inbetween * 2));
+                }
 
-        })
-        .attr("cy", d => yScale(d.Disgusted))
-        .attr("r", 4)
-        .attr("class", "disgusted")
-        .style("fill", "black");
+            })
+            .attr("cy", d => yScale(d.Disgusted))
+            .attr("r", 4)
+            .attr("class", "disgusted")
+    }
+
+    if (neutralBox.checked) {
+        enter.append("circle")
+            .attr("cx", function (d, i) {
+                let individualWidth = (width - margin.inbetween - margin.inbetween - margin.left - margin.right) / 3;
+                if (d.EventMarker == "P1") {
+                    let number = Math.floor(Math.random() * (individualWidth + 1));
+                    return number;
+
+                }
+                else if (d.EventMarker == "P2") {
+                    return Math.floor(Math.random() * ((individualWidth * 2 + margin.inbetween) - (individualWidth + margin.inbetween) + 1) + (individualWidth + margin.inbetween));
+
+                }
+                else {
+                    return Math.floor(Math.random() * ((individualWidth * 3 + margin.inbetween * 2) - (individualWidth * 2 + margin.inbetween * 2) + 1) + (individualWidth * 2 + margin.inbetween * 2));
+                }
+
+            })
+            .attr("cy", d => yScale(d.Neutral))
+            .attr("r", 4)
+            .attr("class", "neutral")
+    }
+
+
 
 
 
@@ -213,7 +246,7 @@ function makeVisual() {
         })
         .on("mouseout", function (d) {
             tooltip.transition()
-                .duration(500)
+                .duration(200)
                 .style("opacity", 0);
         })
         ;
