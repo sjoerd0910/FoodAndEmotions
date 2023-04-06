@@ -26,37 +26,19 @@ function loadData() {
 
     // Define final array to build the visual scatterplot
     finalArray = [];
-
+    
     // For each element in rawData
     for (let i = 0; i < rawData.length; i++) {
         // If the current participant is equal to the previous participant and if the current EventMarker is equal to the 
         // previous EventMarker, the current iteration can be added to the participantArray
         if (rawData[i].Participant == previousParticipant && rawData[i].EventMarker == previousEventMarker) {
             if (rawData[i].Gender == "Female" && femaleBox.checked){
-                if (parseInt(rawData[i].Age) >= 18 && parseInt(rawData[i].Age) <= 25 && age1825Box.checked){
-                    participantArray.push(rawData[i]);
-                }
-                else if (parseInt(rawData[i].Age) >= 26 && parseInt(rawData[i].Age) <= 35 && age2635Box.checked){
-                    participantArray.push(rawData[i]);
-                }
-                else if (parseInt(rawData[i].Age) >= 36 && parseInt(rawData[i].Age) <= 45 && age3645Box.checked){
-                    participantArray.push(rawData[i]);
-                }
-                else if (parseInt(rawData[i].Age) >= 46 && age46Box.checked){
+                if (inAgeRange(rawData[i].Age)){
                     participantArray.push(rawData[i]);
                 }
             }
             else if (rawData[i].Gender == "Male" && maleBox.checked){
-                if (parseInt(rawData[i].Age) >= 18 && parseInt(rawData[i].Age) <= 25 && age1825Box.checked){
-                    participantArray.push(rawData[i]);
-                }
-                else if (parseInt(rawData[i].Age) >= 26 && parseInt(rawData[i].Age) <= 35 && age2635Box.checked){
-                    participantArray.push(rawData[i]);
-                }
-                else if (parseInt(rawData[i].Age) >= 36 && parseInt(rawData[i].Age) <= 45 && age3645Box.checked){
-                    participantArray.push(rawData[i]);
-                }
-                else if (parseInt(rawData[i].Age) >= 46 && age46Box.checked){
+                if (inAgeRange(rawData[i].Age)){
                     participantArray.push(rawData[i]);
                 }
             }
@@ -80,18 +62,48 @@ function loadData() {
                 // Empty participantArray to use in the next iteration of the loop
                 participantArray = [];
             }
-            // This is only really used in the first iteration of the loop to set the right previous EventMarker and participant
-            participantArray.push(rawData[i]);
+
+            if (rawData[i].Gender == "Female" && femaleBox.checked){
+                if (inAgeRange(rawData[i].Age)){
+                    participantArray.push(rawData[i]);
+                }
+            }
+            else if (rawData[i].Gender == "Male" && maleBox.checked){
+                if (inAgeRange(rawData[i].Age)){
+                    participantArray.push(rawData[i]);
+                }
+            }
+            
+            // Current participant and EventMarker are set in previous to compare to in the next iteration of the loop
             previousParticipant = rawData[i].Participant;
             previousEventMarker = rawData[i].EventMarker;
-
+            
         }
     }
     // Calculate based on position of the slider which frame in the array needs to be displayed, only used for the last iteration
-    if (participantArray != []) {
+    if (participantArray.length != 0) {
         let scale = maxValue / participantArray.length;
         let index = Math.floor(sliderValue / scale);
         finalArray.push(participantArray[index]);
     }
-    console.log(femaleBox.checked)
+
+}
+
+function inAgeRange(age)
+{
+    if (parseInt(age) >= 18 && parseInt(age) <= 25 && age1825Box.checked){
+        return true;
+    }
+    else if (parseInt(age) >= 26 && parseInt(age) <= 35 && age2635Box.checked){
+        return true;
+    }
+    else if (parseInt(age) >= 36 && parseInt(age) <= 45 && age3645Box.checked){
+        return true;
+    }
+    else if (parseInt(age) >= 46 && age46Box.checked){
+        return true;
+    }
+    else{
+        return false;
+    }
 }

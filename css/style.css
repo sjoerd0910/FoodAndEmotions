@@ -13,13 +13,16 @@ body {
 }
 
 h1 {
-    
     font-family: 'Anton', sans-serif;
     color: #F1F1F1;
-    font-size: 70px;
+    font-size: 7vw;
     margin-bottom: 0;
     margin-top: 0;
-    
+}
+
+.toptext{
+    position: absolute;
+    z-index: 1;
 }
 
 p{

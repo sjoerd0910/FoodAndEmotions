@@ -14,21 +14,27 @@
 
 <body>
 
-    <h1>
-        Cocktails & Emotions trough time
-    </h1>
+    <div class="toptext">
+        <h1>
+            Cocktails & Emotions
+        </h1>
+        <h1>
+            trough time
+        </h1>
+    </div>
 
-    <div id="topvisual">
-        <div class="scatterplot-container">
-            <div class="scatterplot">
-            </div>
-            <div class="slidecontainer">
-                <input type="range" class="slider" id="timeSlider">
-            </div>
-        </div>
-        <div class="checkboxes">
-            <p class="checkboxesHeaderText">Filters</p>
+    <div class="scatterplot">
+    </div>
 
+    <div class="slidecontainer">
+        <input type="range" class="slider" id="timeSlider">
+    </div>
+
+
+    <div class="filters">
+        <p class="checkboxesHeaderText">Filters</p>
+
+        <div class="emotionsContainer">
             <div class="checkbox">
                 <input type="checkbox" id="checkboxHappy" value="Happy" checked>
                 <p class="checkboxText"> Happy</p>
@@ -43,7 +49,7 @@
                 <input type="checkbox" id="checkboxAngry" value="Angry" checked>
                 <p class="checkboxText"> Angry</p>
             </div>
-            
+
             <div class="checkbox">
                 <input type="checkbox" id="checkboxSurprised" value="Surprised" checked>
                 <p class="checkboxText"> Surprised</p>
@@ -63,7 +69,9 @@
                 <input type="checkbox" id="checkboxNeutral" value="Neutral">
                 <p class="checkboxText"> Neutral</p>
             </div>
+        </div>
 
+        <div class="genderContainer">
             <div class="checkbox">
                 <input type="checkbox" id="checkboxFemale" class="checkboxgender" checked>
                 <p class="checkboxText"> Female</p>
@@ -73,7 +81,9 @@
                 <input type="checkbox" id="checkboxMale" class="checkboxgender" checked>
                 <p class="checkboxText"> Male</p>
             </div>
+        </div>
 
+        <div class="ageContainer">
             <div class="checkbox">
                 <input type="checkbox" id="checkbox1825" class="checkboxage" checked>
                 <p class="checkboxText"> 18-25</p>
@@ -93,9 +103,11 @@
                 <input type="checkbox" id="checkbox46" class="checkboxage" checked>
                 <p class="checkboxText"> 46+</p>
             </div>
-
-            <button id="playButton"><p>Pause</p></button>
         </div>
+
+            <button id="playButton">
+                <p>Pause</p>
+            </button>
     </div>
 
 

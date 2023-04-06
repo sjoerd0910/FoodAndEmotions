@@ -1,6 +1,9 @@
 // Get slider and playbutton
 const slider = document.getElementById("timeSlider");
 const playButton = document.getElementById("playButton");
+const svgButton = document.getElementById("scatterplot");
+
+
 
 // Set the initial value of the slider and its range
 const minValue = 0;
@@ -22,6 +25,10 @@ playButton.addEventListener("click", function () {
     } else {
         playButton.textContent = "Play"; // Update the button text to "Play"
     }
+});
+
+svgButton.addEventListener("click", function () {
+    isPlaying = !isPlaying; // Toggle the boolean variable
 });
 
 
