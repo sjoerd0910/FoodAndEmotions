@@ -1,7 +1,6 @@
 // Get slider and playbutton
 const slider = document.getElementById("timeSlider");
 const playButton = document.getElementById("playButton");
-const svgButton = document.getElementById("scatterplot");
 
 
 
@@ -27,9 +26,6 @@ playButton.addEventListener("click", function () {
     }
 });
 
-svgButton.addEventListener("click", function () {
-    isPlaying = !isPlaying; // Toggle the boolean variable
-});
 
 
 
