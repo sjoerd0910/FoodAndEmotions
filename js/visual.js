@@ -160,7 +160,9 @@ function makeVisual() {
 
 
 
-
+    // variable necessary to give the participant number to the next html page
+    var currentParticipant = "";
+    var currentCocktail = "";
 
     //essential for hover functionality
     d3.selectAll("circle")
@@ -185,6 +187,22 @@ function makeVisual() {
             tooltip.transition()
                 .duration(200)
                 .style("opacity", 0);
+        })
+
+        // navigating to the next visual
+        .on("click", function (event, d) {
+            // get the link to the new HTML page
+            var link = "uservisual.html";
+
+            // get the current participant to be able to give the participant number to the next html page
+            currentParticipant = d.Participant;
+            sessionStorage.setItem("currentParticipant", currentParticipant);
+
+            currentCocktail = d.EventMarker;
+            sessionStorage.setItem("currentCocktail", currentCocktail);
+
+            // navigate to the new HTML page with the query string
+            window.location.href = link;
         })
         ;
 

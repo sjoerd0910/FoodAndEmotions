@@ -23,7 +23,9 @@
         </h1>
     </div>
 
-    <div class="scatterplot">
+
+
+    <div class="scatterplot" onclick="togglePlaying()">
     </div>
 
     <div class="slidecontainer">
@@ -34,8 +36,9 @@
     <div class="filters">
         <p class="checkboxesHeaderText">Filters</p>
 
-        <div class="emotionsContainer">
+        <div class="checkboxContainer">
             <div class="checkbox">
+                <p class="checkboxText">Emotion:</p>
                 <input type="checkbox" id="checkboxHappy" value="Happy" checked>
                 <p class="checkboxText"> Happy</p>
             </div>
@@ -71,8 +74,10 @@
             </div>
         </div>
 
-        <div class="genderContainer">
+        <div class="checkboxContainer">
+
             <div class="checkbox">
+                <p class="checkboxText">Gender:</p>
                 <input type="checkbox" id="checkboxFemale" class="checkboxgender" checked>
                 <p class="checkboxText"> Female</p>
             </div>
@@ -81,10 +86,10 @@
                 <input type="checkbox" id="checkboxMale" class="checkboxgender" checked>
                 <p class="checkboxText"> Male</p>
             </div>
-        </div>
 
-        <div class="ageContainer">
             <div class="checkbox">
+                <p class="checkboxText">Age:</p>
+
                 <input type="checkbox" id="checkbox1825" class="checkboxage" checked>
                 <p class="checkboxText"> 18-25</p>
             </div>
@@ -105,10 +110,9 @@
             </div>
         </div>
 
-            <button id="playButton">
-                <p>Pause</p>
-            </button>
+
     </div>
+
 
 
 

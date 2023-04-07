@@ -1,6 +1,8 @@
 // Get slider and playbutton
 const slider = document.getElementById("timeSlider");
 const playButton = document.getElementById("playButton");
+const visual = document.getElementById("svgVisual");
+
 
 
 
@@ -15,16 +17,11 @@ slider.value = sliderValue;
 // Set up a boolean variable to track whether the slider is currently playing
 let isPlaying = true;
 
-// Set up a click event listener for the play/pause button
-playButton.addEventListener("click", function () {
+// Set up a function to toggle for the play/pause 
+function togglePlaying(){
     isPlaying = !isPlaying; // Toggle the boolean variable
 
-    if (isPlaying) {
-        playButton.textContent = "Pause"; // Update the button text to "Pause"
-    } else {
-        playButton.textContent = "Play"; // Update the button text to "Play"
-    }
-});
+}
 
 
 
@@ -60,8 +57,6 @@ slider.oninput = function () {
     sliderValue = this.value;
 
     isPlaying = false; // Set boolean value to false to stop playing
-
-    playButton.textContent = "Play"; // Update the button text to "Play"
 
     //update the graph visual
     updateVisual();
