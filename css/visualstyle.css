@@ -114,7 +114,7 @@ svg {
     background: transparent;
 }
 
-.scatterplot {
+.scatterplotContainer {
     width: 100%;
     position: relative;
     z-index: 2;
@@ -126,30 +126,44 @@ g {
 
 .happy {
     fill: green;
+    stroke: green;
+    stroke-width: 3px;
 }
 
 .sad {
     fill: blue;
+    stroke: blue;
+    stroke-width: 3px;
 }
 
 .angry {
     fill: red;
+    stroke: red;
+    stroke-width: 3px;
 }
 
 .surprised {
     fill: yellow;
+    stroke: yellow;
+    stroke-width: 3px;
 }
 
 .scared {
     fill: orange;
+    stroke: orange;
+    stroke-width: 3px;
 }
 
 .disgusted {
     fill: purple;
+    stroke:purple;
+    stroke-width: 3px;
 }
 
 .neutral {
     fill: grey;
+    stroke: gray;
+    stroke-width: 3px;
 }
 
 .tooltip {
@@ -162,9 +176,18 @@ g {
     pointer-events: none;
 }
 
+/* user visual style */
 
 .uservisual {
-    width: 90%;
+    width: 100%;
+}
+
+/* live bar chart style */
+
+.barchartContainer {
+    width: 100%;
+    position: relative;
+    z-index: 2;
 }
 
 

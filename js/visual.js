@@ -1,5 +1,5 @@
 // Set width and height for the SVG viewBox
-let height = 700;
+let height = 600;
 let width = 1500;
 
 // Set margins for the SVG
@@ -8,12 +8,14 @@ let margin = {
     right: 20,
     left: 20,
     bottom: 30,
-    inbetween: 100
+    inbetween: 100,
+    barchartleft: 100
 };
 
 // Create SVG for visual
-let svg = d3.select(".scatterplot").append("svg")
+let scatterplot = d3.select(".scatterplotContainer").append("svg")
     .attr("viewBox", `0 0 ${width} ${height}`)
+    .attr("class","scatterplot")
 
 // Create x scale in visual
 const xScale = d3.scaleBand()
@@ -26,7 +28,7 @@ const yScale = d3.scaleLinear()
     .range([height - margin.bottom - margin.top, 0]);
 
 // Create axiscontainer for visual
-const axisContainer = svg.append("g")
+const axisContainer = scatterplot.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Add x axis line in visual
@@ -41,7 +43,7 @@ axisContainer.append("g")
 
 
 // Create tooltip for hover functionality
-let tooltip = d3.select(".scatterplot")
+let tooltip = d3.select(".scatterplotContainer")
     .append("div")
     .style("opacity", 0)
     .attr("class", "tooltip");
@@ -82,8 +84,11 @@ function updateVisual() {
 
 // Define function to create visual
 function makeVisual() {
+    // Load new data
+    loadData();
+
     // Get svg and put in variable
-    let svg = d3.select("svg")
+    let svg = d3.select(".scatterplot")
 
     // Get all cicles and put in variable with enter functionality
     let enter = axisContainer.selectAll("circle").data(finalArray).enter();
@@ -95,7 +100,7 @@ function makeVisual() {
             })
             .attr("cy", d => yScale(d.Happy))
             .attr("r", 4)
-            .attr("class", "happy")
+            .attr("class", "happy");
     }
 
     if (sadBox.checked) {
@@ -105,7 +110,7 @@ function makeVisual() {
             })
             .attr("cy", d => yScale(d.Sad))
             .attr("r", 4)
-            .attr("class", "sad")
+            .attr("class", "sad");
     }
 
     if (angryBox.checked) {
@@ -115,7 +120,7 @@ function makeVisual() {
             })
             .attr("cy", d => yScale(d.Angry))
             .attr("r", 4)
-            .attr("class", "angry")
+            .attr("class", "angry");
     }
 
     if (surprisedBox.checked) {
@@ -125,7 +130,7 @@ function makeVisual() {
             })
             .attr("cy", d => yScale(d.Surprised))
             .attr("r", 4)
-            .attr("class", "surprised")
+            .attr("class", "surprised");
     }
 
     if (scaredBox.checked) {
@@ -135,7 +140,7 @@ function makeVisual() {
             })
             .attr("cy", d => yScale(d.Scared))
             .attr("r", 4)
-            .attr("class", "scared")
+            .attr("class", "scared");
     }
 
     if (disgustedBox.checked) {
@@ -145,7 +150,7 @@ function makeVisual() {
             })
             .attr("cy", d => yScale(d.Disgusted))
             .attr("r", 4)
-            .attr("class", "disgusted")
+            .attr("class", "disgusted");
     }
 
     if (neutralBox.checked) {
@@ -155,7 +160,7 @@ function makeVisual() {
             })
             .attr("cy", d => yScale(d.Neutral))
             .attr("r", 4)
-            .attr("class", "neutral")
+            .attr("class", "neutral");
     }
 
 
@@ -223,3 +228,185 @@ function getWidth(eventMarker) {
         return Math.floor(Math.random() * ((individualWidth * 3 + margin.inbetween * 2) - (individualWidth * 2 + margin.inbetween * 2) + 1) + (individualWidth * 2 + margin.inbetween * 2));
     }
 }
+
+
+
+// Create SVG for visual
+let barchart = d3.select(".barchartContainer").append("svg")
+    .attr("viewBox", `0 0 ${width} ${height}`)
+    .attr("class", "barchart");
+
+// Create x scale in visual
+const barxScale = d3.scaleLinear()
+    .domain([0, 100])
+    .range([0, width - margin.barchartleft - margin.right]);
+
+// Create y scale in visual
+const baryScale = d3.scaleBand()
+    .domain(["Cocktail 1", "Cocktail 2", "Cocktail 3"])
+    .range([height - margin.bottom - margin.top, 0]);
+
+// Create axiscontainer for visual
+const baraxisContainer = barchart.append("g")
+    .attr("transform", `translate(${margin.barchartleft}, ${margin.top})`);
+
+// Add x axis line in visual
+baraxisContainer.append("g")
+    .attr("transform", `translate(0, ${height - margin.top - margin.bottom})`)
+    .call(d3.axisBottom(barxScale));
+
+// Add y axis line in visual
+baraxisContainer.append("g")
+    .style("color", "white")
+    .call(d3.axisLeft(baryScale));
+
+
+
+function MakeBarchart() {
+    // Load new data
+    CalculateLiveBarchart();
+
+    // Get svg and put in variable
+    let barchart = d3.select(".barchart")
+
+    // Get all cicles and put in variable with enter functionality
+    let cocktail1 = baraxisContainer.selectAll("rect").data(liveBarChart.cocktail1).enter();
+    let cocktail2 = baraxisContainer.selectAll("rect").data(liveBarChart.cocktail2).enter();
+    let cocktail3 = baraxisContainer.selectAll("rect").data(liveBarChart.cocktail3).enter();
+
+
+
+    if (happyBox.checked) {
+        cocktail1.append("rect")
+            .attr("x", margin.barchartleft)
+            .attr("y", 100)
+            .attr("height", 200)
+            .attr("width", d => barxScale(d.Happy))
+            .attr("class", "happy");
+        
+        cocktail2.append("rect")
+            .attr("x", 0)
+            .attr("y", 100)
+            .attr("height", 200)
+            .attr("width", d => barxScale(d.Happy))
+            .attr("class", "happy");
+        
+        cocktail3.append("rect")
+            .attr("x", 0)
+            .attr("y", 100)
+            .attr("height", 200)
+            .attr("width", d => barxScale(d.Happy))
+            .attr("class", "happy");
+    }
+
+    if (sadBox.checked) {
+        enter.append("circle")
+            .attr("cx", function (d, i) {
+                return getWidth(d.EventMarker);
+            })
+            .attr("cy", d => yScale(d.Sad))
+            .attr("r", 4)
+            .attr("class", "sad");
+    }
+
+    if (angryBox.checked) {
+        enter.append("circle")
+            .attr("cx", function (d, i) {
+                return getWidth(d.EventMarker);
+            })
+            .attr("cy", d => yScale(d.Angry))
+            .attr("r", 4)
+            .attr("class", "angry");
+    }
+
+    if (surprisedBox.checked) {
+        enter.append("circle")
+            .attr("cx", function (d, i) {
+                return getWidth(d.EventMarker);
+            })
+            .attr("cy", d => yScale(d.Surprised))
+            .attr("r", 4)
+            .attr("class", "surprised");
+    }
+
+    if (scaredBox.checked) {
+        enter.append("circle")
+            .attr("cx", function (d, i) {
+                return getWidth(d.EventMarker);
+            })
+            .attr("cy", d => yScale(d.Scared))
+            .attr("r", 4)
+            .attr("class", "scared");
+    }
+
+    if (disgustedBox.checked) {
+        enter.append("circle")
+            .attr("cx", function (d, i) {
+                return getWidth(d.EventMarker);
+            })
+            .attr("cy", d => yScale(d.Disgusted))
+            .attr("r", 4)
+            .attr("class", "disgusted");
+    }
+
+    if (neutralBox.checked) {
+        enter.append("circle")
+            .attr("cx", function (d, i) {
+                return getWidth(d.EventMarker);
+            })
+            .attr("cy", d => yScale(d.Neutral))
+            .attr("r", 4)
+            .attr("class", "neutral");
+    }
+
+
+
+    // variable necessary to give the participant number to the next html page
+    var currentParticipant = "";
+    var currentCocktail = "";
+
+    //essential for hover functionality
+    d3.selectAll("circle")
+        .on("mouseover", function (event, d) {
+            d3.select(this)
+                .transition()
+                .duration(100)
+                .attr("r", 8);
+            tooltip.transition()
+                .duration(200)
+                .style("opacity", 1);
+
+            tooltip.html(`Participant: ${d.Participant} <br/> Gender: ${d.Gender} <br/> Age: ${d.Age} <br/> Drink: ${d.EventMarker}`)
+                .style("left", (event.pageX) + "px")
+                .style("top", (event.pageY - 28) + "px");
+        })
+        .on("mouseout", function (d) {
+            d3.select(this)
+                .transition()
+                .duration(100)
+                .attr("r", 4);
+            tooltip.transition()
+                .duration(200)
+                .style("opacity", 0);
+        })
+
+        // navigating to the next visual
+        .on("click", function (event, d) {
+            // get the link to the new HTML page
+            var link = "uservisual.html";
+
+            // get the current participant to be able to give the participant number to the next html page
+            currentParticipant = d.Participant;
+            sessionStorage.setItem("currentParticipant", currentParticipant);
+
+            currentCocktail = d.EventMarker;
+            sessionStorage.setItem("currentCocktail", currentCocktail);
+
+            // navigate to the new HTML page with the query string
+            window.location.href = link;
+        })
+        ;
+
+
+}
+

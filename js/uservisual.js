@@ -1,22 +1,22 @@
 // current participant number given by the previous html page
 var currentParticipant = sessionStorage.getItem("currentParticipant");
-console.log(currentParticipant);
-
 var currentCocktail = sessionStorage.getItem("currentCocktail");
-console.log(currentCocktail);
 
 let cocktail;
-if(currentCocktail == "P1"){
-    cocktail = "Cocktail 1";
+if (currentCocktail == "P1") {
+    cocktail = "Cocktail 1 - Regular";
 }
-else if(currentCocktail == "P2"){
-    cocktail = "Cocktail 2";
+else if (currentCocktail == "P2") {
+    cocktail = "Cocktail 2 - Sour";
 }
-else if(currentCocktail == "P3"){
-    cocktail = "Cocktail 3";
+else if (currentCocktail == "P3") {
+    cocktail = "Cocktail 3 - Bitter";
 }
 
-let height = 700;
+document.getElementById("participantTitle").innerHTML = `Participant ${currentParticipant} trough time`;
+document.getElementById("cocktailTitle").innerHTML = cocktail;
+
+let height = 600;
 let width = 1500;
 
 // Set margins for the SVG
@@ -32,7 +32,7 @@ let svg = d3.select(".uservisual").append("svg")
     .attr("viewBox", `0 0 ${width} ${height}`)
 
 
-const xScale = d3.scaleLinear()
+const xScale = d3.scaleBand()
     .domain(["Time"])
     .range([0, width - margin.left - margin.right]);
 
@@ -72,42 +72,33 @@ let finalArrayParticipant = [];
             finalArrayParticipant.push(rawData[i]);
         }
     }
-    let scale = (width) / finalArrayParticipant.length;
+    let scale = (width - margin.left - margin.right) / finalArrayParticipant.length;
     for (let j = 0; j < finalArrayParticipant.length; j++) {
         finalArrayParticipant[j].VideoTime = j * scale;
     }
 
     console.log(finalArrayParticipant);
 
-    let enter = svg.selectAll("line").data(finalArrayParticipant).enter();
+    let enter = svg.selectAll(".userline").data(finalArrayParticipant).enter();
 
 
     let x1 = function (d, i) {
-        return d.VideoTime ;
+        return d.VideoTime + margin.left;
     };
 
     let x2 = function (d, i) {
         if (i < (finalArrayParticipant.length - 1)) {
-            return finalArrayParticipant[(i + 1)].VideoTime ;
+            return finalArrayParticipant[(i + 1)].VideoTime + margin.left;
         }
         else {
-            return d.VideoTime ;
+            return d.VideoTime + margin.left;
         }
     };
 
     //Happy
     enter.append("line")
-        .attr("x1", function (d, i) {
-            return d.VideoTime;
-        })
-        .attr("x2", function (d, i) {
-            if (i < (finalArrayParticipant.length - 1)) {
-                return finalArrayParticipant[(i + 1)].VideoTime;
-            }
-            else {
-                return d.VideoTime;
-            }
-        })
+        .attr("x1", x1)
+        .attr("x2", x2)
         .attr("y1", function (d, i) {
             return yScale(d.Happy);
         })
@@ -119,8 +110,9 @@ let finalArrayParticipant = [];
                 return yScale(d.Happy);
             }
         })
-        .style("stroke", "green")
-        .style("stroke-width", "3px");
+        .attr("class", "userline")
+        .attr("class", "happy");
+
 
     //Sad
     enter.append("line")
@@ -137,8 +129,8 @@ let finalArrayParticipant = [];
                 return yScale(d.Sad);
             }
         })
-        .style("stroke", "blue")
-        .style("stroke-width", "3px");
+        .attr("class", "userline")
+        .attr("class", "sad");
 
     //Angry
     enter.append("line")
@@ -155,8 +147,8 @@ let finalArrayParticipant = [];
                 return yScale(d.Angry);
             }
         })
-        .style("stroke", "red")
-        .style("stroke-width", "3px");
+        .attr("class", "userline")
+        .attr("class", "angry");
 
     //Surprised
     enter.append("line")
@@ -173,8 +165,8 @@ let finalArrayParticipant = [];
                 return yScale(d.Surprised);
             }
         })
-        .style("stroke", "yellow")
-        .style("stroke-width", "3px");
+        .attr("class", "userline")
+        .attr("class", "surprised");
 
     //Scared
     enter.append("line")
@@ -191,8 +183,8 @@ let finalArrayParticipant = [];
                 return yScale(d.Scared);
             }
         })
-        .style("stroke", "orange")
-        .style("stroke-width", "3px");
+        .attr("class", "userline")
+        .attr("class", "scared");
 
     //Disgusted
     enter.append("line")
@@ -209,8 +201,8 @@ let finalArrayParticipant = [];
                 return yScale(d.Disgusted);
             }
         })
-        .style("stroke", "purple")
-        .style("stroke-width", "3px");
+        .attr("class", "userline")
+        .attr("class", "disgusted");
 
     //Neutral
     enter.append("line")
@@ -227,8 +219,8 @@ let finalArrayParticipant = [];
                 return yScale(d.Neutral);
             }
         })
+        .attr("class", "userline")
         .attr("class", "neutral")
-        .style("stroke", "grey")
         .style("stroke-width", "3px");
 
 
@@ -245,7 +237,7 @@ let finalArrayParticipant = [];
                 .duration(200)
                 .style("opacity", 1);
 
-            tooltip.html(`Participant: ${d.Participant} <br/> Gender: ${d.Gender} <br/> Age: ${d.Age} <br/> Drink: ${cocktail} <br/> Happy: ${d.Happy} <br/> Sad: ${d.Sad} <br/> Angry: ${d.Angry} <br/> Surprised: ${d.Surprised} <br/> Scared: ${d.Scared} <br/> Disgusted: ${d.Disgusted} <br/> Neutral: ${d.Neutral}`)
+            tooltip.html(`Gender: ${d.Gender} <br/> Age: ${d.Age} <br/> Drink: ${cocktail} <br/> Happy: ${d.Happy} <br/> Sad: ${d.Sad} <br/> Angry: ${d.Angry} <br/> Surprised: ${d.Surprised} <br/> Scared: ${d.Scared} <br/> Disgusted: ${d.Disgusted} <br/> Neutral: ${d.Neutral}`)
                 .style("left", (event.pageX) + "px")
                 .style("top", (event.pageY - 28) + "px");
         })
@@ -254,7 +246,7 @@ let finalArrayParticipant = [];
             //     .transition()
             //     .duration(100)
             //     .style("stroke-width", "1px");
-            
+
             tooltip.transition()
                 .duration(200)
                 .style("opacity", 0);

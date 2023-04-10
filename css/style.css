@@ -20,6 +20,14 @@ h1 {
     margin-top: 0;
 }
 
+h2 {
+    font-family: 'Anton', sans-serif;
+    color: #F1F1F1;
+    font-size: 3vw;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+
 .toptext{
     position: absolute;
     z-index: 1;
@@ -28,4 +36,13 @@ h1 {
 p{
     font-family: 'Open Sans', sans-serif;
 }
+
+.info{
+    position: absolute;
+    z-index: 3;
+    margin-right: 2%;
+    right: 0;
+    cursor: pointer;
+}
+
 

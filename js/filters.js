@@ -32,6 +32,7 @@ happyBox.addEventListener('change', (event) => {
     }
 })
 
+
 // Listens for events happening on sadBox checkbox
 sadBox.addEventListener('change', (event) => {
     if (event.currentTarget.checked) {
@@ -118,13 +119,11 @@ femaleBox.addEventListener('change', (event) => {
     if (event.currentTarget.checked) {
         // Removes all circles, loads new data based on filters and creates new visual
         svg.selectAll("circle").remove();
-        loadData();
         makeVisual();
 
     } else {
         // Removes all circles, loads new data based on filters and creates new visual
         svg.selectAll("circle").remove();
-        loadData();
         makeVisual();
     }
 })
@@ -134,13 +133,11 @@ maleBox.addEventListener('change', (event) => {
     if (event.currentTarget.checked) {
         // Removes all circles, loads new data based on filters and creates new visual
         svg.selectAll("circle").remove();
-        loadData();
         makeVisual();
 
     } else {
         // Removes all circles, loads new data based on filters and creates new visual
         svg.selectAll("circle").remove();
-        loadData();
         makeVisual();
     }
 })
@@ -152,13 +149,11 @@ age1825Box.addEventListener('change', (event) => {
     if (event.currentTarget.checked) {
         // Removes all circles, loads new data based on filters and creates new visual
         svg.selectAll("circle").remove();
-        loadData();
         makeVisual();
 
     } else {
         // Removes all circles, loads new data based on filters and creates new visual
         svg.selectAll("circle").remove();
-        loadData();
         makeVisual();
     }
 })
@@ -168,13 +163,11 @@ age2635Box.addEventListener('change', (event) => {
     if (event.currentTarget.checked) {
         // Removes all circles, loads new data based on filters and creates new visual
         svg.selectAll("circle").remove();
-        loadData();
         makeVisual();
 
     } else {
         // Removes all circles, loads new data based on filters and creates new visual
         svg.selectAll("circle").remove();
-        loadData();
         makeVisual();
     }
 })
@@ -184,13 +177,11 @@ age3645Box.addEventListener('change', (event) => {
     if (event.currentTarget.checked) {
         // Removes all circles, loads new data based on filters and creates new visual
         svg.selectAll("circle").remove();
-        loadData();
         makeVisual();
 
     } else {
         // Removes all circles, loads new data based on filters and creates new visual
         svg.selectAll("circle").remove();
-        loadData();
         makeVisual();
     }
 })
@@ -200,13 +191,11 @@ age46Box.addEventListener('change', (event) => {
     if (event.currentTarget.checked) {
         // Removes all circles, loads new data based on filters and creates new visual
         svg.selectAll("circle").remove();
-        loadData();
         makeVisual();
 
     } else {
         // Removes all circles, loads new data based on filters and creates new visual
         svg.selectAll("circle").remove();
-        loadData();
         makeVisual();
     }
 })
