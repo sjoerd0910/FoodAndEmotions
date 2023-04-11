@@ -9,7 +9,7 @@ let margin = {
     left: 20,
     bottom: 30,
     inbetween: 100,
-    barchartleft: 100
+    barchartleft: 150
 };
 
 // Create SVG for visual
@@ -19,7 +19,7 @@ let scatterplot = d3.select(".scatterplotContainer").append("svg")
 
 // Create x scale in visual
 const xScale = d3.scaleBand()
-    .domain(["Cocktail 1", "Cocktail 2", "Cocktail 3"])
+    .domain(["Cocktail 1 - Regular", "Cocktail 2 - Sour", "Cocktail 3 - Bitter"])
     .range([0, width - margin.left - margin.right]);
 
 // Create y scale in visual
@@ -172,6 +172,16 @@ function makeVisual() {
     //essential for hover functionality
     d3.selectAll("circle")
         .on("mouseover", function (event, d) {
+            let cocktail = "";
+            if (d.EventMarker == "P1"){
+                cocktail = "Cocktail 1 - Regular";
+            }
+            else if(d.EventMarker == "P2"){
+                cocktail = "Cocktail 2 - Sour";
+            }
+            else if(d.EventMarker == "P3"){
+                cocktail = "Cocktail 3 - Bitter";
+            }
             d3.select(this)
                 .transition()
                 .duration(100)
@@ -180,7 +190,7 @@ function makeVisual() {
                 .duration(200)
                 .style("opacity", 1);
 
-            tooltip.html(`Participant: ${d.Participant} <br/> Gender: ${d.Gender} <br/> Age: ${d.Age} <br/> Drink: ${d.EventMarker}`)
+            tooltip.html(`Participant: ${d.Participant} <br/> Gender: ${d.Gender} <br/> Age: ${d.Age} <br/> Drink: ${cocktail}`)
                 .style("left", (event.pageX) + "px")
                 .style("top", (event.pageY - 28) + "px");
         })
@@ -243,7 +253,7 @@ const barxScale = d3.scaleLinear()
 
 // Create y scale in visual
 const baryScale = d3.scaleBand()
-    .domain(["Cocktail 1", "Cocktail 2", "Cocktail 3"])
+    .domain(["Cocktail 3 - Bitter", "Cocktail 2 - Sour", "Cocktail 1 - Regular"])
     .range([height - margin.bottom - margin.top, 0]);
 
 // Create axiscontainer for visual
