@@ -16,7 +16,7 @@ else if (currentCocktail == "P3") {
 document.getElementById("participantTitle").innerHTML = `Participant ${currentParticipant} trough time`;
 document.getElementById("cocktailTitle").innerHTML = cocktail;
 
-let height = 600;
+let height = 500;
 let width = 1500;
 
 // Set margins for the SVG

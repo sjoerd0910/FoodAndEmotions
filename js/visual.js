@@ -15,7 +15,7 @@ let margin = {
 // Create SVG for visual
 let scatterplot = d3.select(".scatterplotContainer").append("svg")
     .attr("viewBox", `0 0 ${width} ${height}`)
-    .attr("class","scatterplot")
+    .attr("class", "scatterplot")
 
 // Create x scale in visual
 const xScale = d3.scaleBand()
@@ -264,148 +264,102 @@ baraxisContainer.append("g")
 
 function MakeBarchart() {
     // Load new data
-    CalculateLiveBarchart();
 
     // Get svg and put in variable
-    let barchart = d3.select(".barchart")
+    let barsvg = d3.select(".barchart")
 
     // Get all cicles and put in variable with enter functionality
-    let cocktail1 = baraxisContainer.selectAll("rect").data(liveBarChart.cocktail1).enter();
-    let cocktail2 = baraxisContainer.selectAll("rect").data(liveBarChart.cocktail2).enter();
-    let cocktail3 = baraxisContainer.selectAll("rect").data(liveBarChart.cocktail3).enter();
+    let cocktail1 = baraxisContainer.selectAll("rect").enter();
+    let cocktail2 = baraxisContainer.selectAll("rect").data(barchartArray.cocktail2).enter();
+    let cocktail3 = baraxisContainer.selectAll("rect").data(barchartArray.cocktail3).enter();
 
 
+    cocktail1.append("rect")
+        .attr("x", margin.barchartleft)
+        .attr("y", 100)
+        .attr("height", 200)
+        .attr("width", function(){
+            barxScale(barchart.cocktail1.happy)
+        })
+        .attr("class", "happy");
+
+    cocktail2.append("rect")
+        .attr("x", 0)
+        .attr("y", 100)
+        .attr("height", 200)
+        .attr("width", d => barxScale(d.happy))
+        .attr("class", "happy");
+
+    cocktail3.append("rect")
+        .attr("x", 0)
+        .attr("y", 100)
+        .attr("height", 200)
+        .attr("width", d => barxScale(d.happy))
+        .attr("class", "happy");
 
     if (happyBox.checked) {
-        cocktail1.append("rect")
-            .attr("x", margin.barchartleft)
-            .attr("y", 100)
-            .attr("height", 200)
-            .attr("width", d => barxScale(d.Happy))
-            .attr("class", "happy");
-        
-        cocktail2.append("rect")
-            .attr("x", 0)
-            .attr("y", 100)
-            .attr("height", 200)
-            .attr("width", d => barxScale(d.Happy))
-            .attr("class", "happy");
-        
-        cocktail3.append("rect")
-            .attr("x", 0)
-            .attr("y", 100)
-            .attr("height", 200)
-            .attr("width", d => barxScale(d.Happy))
-            .attr("class", "happy");
+
     }
 
-    if (sadBox.checked) {
-        enter.append("circle")
-            .attr("cx", function (d, i) {
-                return getWidth(d.EventMarker);
-            })
-            .attr("cy", d => yScale(d.Sad))
-            .attr("r", 4)
-            .attr("class", "sad");
-    }
+    // if (sadBox.checked) {
+    //     enter.append("circle")
+    //         .attr("cx", function (d, i) {
+    //             return getWidth(d.EventMarker);
+    //         })
+    //         .attr("cy", d => yScale(d.Sad))
+    //         .attr("r", 4)
+    //         .attr("class", "sad");
+    // }
 
-    if (angryBox.checked) {
-        enter.append("circle")
-            .attr("cx", function (d, i) {
-                return getWidth(d.EventMarker);
-            })
-            .attr("cy", d => yScale(d.Angry))
-            .attr("r", 4)
-            .attr("class", "angry");
-    }
+    // if (angryBox.checked) {
+    //     enter.append("circle")
+    //         .attr("cx", function (d, i) {
+    //             return getWidth(d.EventMarker);
+    //         })
+    //         .attr("cy", d => yScale(d.Angry))
+    //         .attr("r", 4)
+    //         .attr("class", "angry");
+    // }
 
-    if (surprisedBox.checked) {
-        enter.append("circle")
-            .attr("cx", function (d, i) {
-                return getWidth(d.EventMarker);
-            })
-            .attr("cy", d => yScale(d.Surprised))
-            .attr("r", 4)
-            .attr("class", "surprised");
-    }
+    // if (surprisedBox.checked) {
+    //     enter.append("circle")
+    //         .attr("cx", function (d, i) {
+    //             return getWidth(d.EventMarker);
+    //         })
+    //         .attr("cy", d => yScale(d.Surprised))
+    //         .attr("r", 4)
+    //         .attr("class", "surprised");
+    // }
 
-    if (scaredBox.checked) {
-        enter.append("circle")
-            .attr("cx", function (d, i) {
-                return getWidth(d.EventMarker);
-            })
-            .attr("cy", d => yScale(d.Scared))
-            .attr("r", 4)
-            .attr("class", "scared");
-    }
+    // if (scaredBox.checked) {
+    //     enter.append("circle")
+    //         .attr("cx", function (d, i) {
+    //             return getWidth(d.EventMarker);
+    //         })
+    //         .attr("cy", d => yScale(d.Scared))
+    //         .attr("r", 4)
+    //         .attr("class", "scared");
+    // }
 
-    if (disgustedBox.checked) {
-        enter.append("circle")
-            .attr("cx", function (d, i) {
-                return getWidth(d.EventMarker);
-            })
-            .attr("cy", d => yScale(d.Disgusted))
-            .attr("r", 4)
-            .attr("class", "disgusted");
-    }
+    // if (disgustedBox.checked) {
+    //     enter.append("circle")
+    //         .attr("cx", function (d, i) {
+    //             return getWidth(d.EventMarker);
+    //         })
+    //         .attr("cy", d => yScale(d.Disgusted))
+    //         .attr("r", 4)
+    //         .attr("class", "disgusted");
+    // }
 
-    if (neutralBox.checked) {
-        enter.append("circle")
-            .attr("cx", function (d, i) {
-                return getWidth(d.EventMarker);
-            })
-            .attr("cy", d => yScale(d.Neutral))
-            .attr("r", 4)
-            .attr("class", "neutral");
-    }
-
-
-
-    // variable necessary to give the participant number to the next html page
-    var currentParticipant = "";
-    var currentCocktail = "";
-
-    //essential for hover functionality
-    d3.selectAll("circle")
-        .on("mouseover", function (event, d) {
-            d3.select(this)
-                .transition()
-                .duration(100)
-                .attr("r", 8);
-            tooltip.transition()
-                .duration(200)
-                .style("opacity", 1);
-
-            tooltip.html(`Participant: ${d.Participant} <br/> Gender: ${d.Gender} <br/> Age: ${d.Age} <br/> Drink: ${d.EventMarker}`)
-                .style("left", (event.pageX) + "px")
-                .style("top", (event.pageY - 28) + "px");
-        })
-        .on("mouseout", function (d) {
-            d3.select(this)
-                .transition()
-                .duration(100)
-                .attr("r", 4);
-            tooltip.transition()
-                .duration(200)
-                .style("opacity", 0);
-        })
-
-        // navigating to the next visual
-        .on("click", function (event, d) {
-            // get the link to the new HTML page
-            var link = "uservisual.html";
-
-            // get the current participant to be able to give the participant number to the next html page
-            currentParticipant = d.Participant;
-            sessionStorage.setItem("currentParticipant", currentParticipant);
-
-            currentCocktail = d.EventMarker;
-            sessionStorage.setItem("currentCocktail", currentCocktail);
-
-            // navigate to the new HTML page with the query string
-            window.location.href = link;
-        })
-        ;
+    // if (neutralBox.checked) {
+    //     enter.append("circle")
+    //         .attr("cx", function (d, i) {
+    //             return getWidth(d.EventMarker);
+    //         })
+    //         .attr("cy", d => yScale(d.Neutral))
+    //         .attr("r", 4)
+    //         .attr("class", "neutral");
+    // }
 
 
 }

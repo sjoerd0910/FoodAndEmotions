@@ -1,7 +1,7 @@
 // Define variables for loading the data and storing the processed data
 let rawData;
 let finalArray = [];
-let liveBarChart = [];
+let barchartArray = [];
 
 
 // Define function to asynchronically load the data from the csv file
@@ -10,7 +10,8 @@ let liveBarChart = [];
     rawData = await d3.csv("data/data.csv");
     // Load data and make visual for the first time when loading web page
     makeVisual();
-    CalculateLiveBarchart();
+    //MakeBarchart();
+    CalculateBarchart();
 
 })()
 
@@ -108,9 +109,9 @@ function inAgeRange(age) {
     }
 }
 
-function CalculateLiveBarchart() {
-    // Empty live bar chart
-    liveBarChart = [];
+function CalculateBarchart() {
+    // Empty bar chart array
+    barchartArray = [];
 
     let cocktail1 = {
         happy: 0,
@@ -119,7 +120,7 @@ function CalculateLiveBarchart() {
         surprised: 0,
         scared: 0,
         disgusted: 0,
-        neural: 0
+        neutral: 0
     };
 
     let cocktail2 = {
@@ -129,7 +130,7 @@ function CalculateLiveBarchart() {
         surprised: 0,
         scared: 0,
         disgusted: 0,
-        neural: 0
+        neutral: 0
     };
 
     let cocktail3 = {
@@ -139,49 +140,135 @@ function CalculateLiveBarchart() {
         surprised: 0,
         scared: 0,
         disgusted: 0,
-        neural: 0
+        neutral: 0
     };
 
-    for (let i = 0; i < finalArray.length; i++){
-        if (finalArray[i].EventMarker == "P1"){
-            cocktail1.happy += Number(finalArray[i].Happy);
-            cocktail1.sad += Number(finalArray[i].Sad);
-            cocktail1.angry += Number(finalArray[i].Angry);
-            cocktail1.surprised += Number(finalArray[i].Surprised);
-            cocktail1.scared += Number(finalArray[i].Scared);
-            cocktail1.disgusted += Number(finalArray[i].disgusted);
-            cocktail1.neural += Number(finalArray[i].neural);
+    // Define array to put every range of partticipants per drink
+    let participantArray = [];
+
+    // Define previous participant for loop
+    let previousParticipant;
+
+    // Define previous EventMarker for loop
+    let previousEventMarker;
+
+
+    // For each element in rawData
+    for (let i = 0; i < rawData.length; i++) {
+        // If the current participant is equal to the previous participant and if the current EventMarker is equal to the 
+        // previous EventMarker, the current iteration can be added to the participantArray
+        if (rawData[i].Participant == previousParticipant && rawData[i].EventMarker == previousEventMarker) {
+            if (rawData[i].Gender == "Female" && femaleBox.checked) {
+                if (inAgeRange(rawData[i].Age)) {
+                    participantArray.push(rawData[i]);
+                }
+            }
+            else if (rawData[i].Gender == "Male" && maleBox.checked) {
+                if (inAgeRange(rawData[i].Age)) {
+                    participantArray.push(rawData[i]);
+                }
+            }
+
+            // Current participant and EventMarker are set in previous to compare to in the next iteration of the loop
+            previousParticipant = rawData[i].Participant;
+            previousEventMarker = rawData[i].EventMarker;
+
         }
-        else if (finalArray[i].EventMarker == "P2"){
-            cocktail2.happy += Number(finalArray[i].Happy);
-            cocktail2.sad += Number(finalArray[i].Sad);
-            cocktail2.angry += Number(finalArray[i].Angry);
-            cocktail2.surprised += Number(finalArray[i].Surprised);
-            cocktail2.scared += Number(finalArray[i].Scared);
-            cocktail2.disgusted += Number(finalArray[i].disgusted);
-            cocktail2.neural += Number(finalArray[i].neural);
+        // If the current participant is not equal to the previous participant or the current eventmarker is not equal to
+        // the previous eventmarker, the participantArray is filled with every event from one drink from one participant. 
+        else {
+            if (participantArray.length != 0) {
+
+                if (previousEventMarker == "P1"){
+                    cocktail1.happy += GetAverage(participantArray).happy;
+                    cocktail1.sad += GetAverage(participantArray).sad;
+                    cocktail1.angry += GetAverage(participantArray).angry;
+                    cocktail1.surprised += GetAverage(participantArray).surprised;
+                    cocktail1.scared += GetAverage(participantArray).scared;
+                    cocktail1.disgusted += GetAverage(participantArray).disgusted;
+                    cocktail1.neutral += GetAverage(participantArray).neutral;
+                }
+                else if(previousEventMarker == "P2"){
+                    cocktail2.happy += GetAverage(participantArray).happy;
+                    cocktail2.sad += GetAverage(participantArray).sad;
+                    cocktail2.angry += GetAverage(participantArray).angry;
+                    cocktail2.surprised += GetAverage(participantArray).surprised;
+                    cocktail2.scared += GetAverage(participantArray).scared;
+                    cocktail2.disgusted += GetAverage(participantArray).disgusted;
+                    cocktail2.neutral += GetAverage(participantArray).neutral;
+                }
+                else if(previousEventMarker == "P3"){
+                    cocktail3.happy += GetAverage(participantArray).happy;
+                    cocktail3.sad += GetAverage(participantArray).sad;
+                    cocktail3.angry += GetAverage(participantArray).angry;
+                    cocktail3.surprised += GetAverage(participantArray).surprised;
+                    cocktail3.scared += GetAverage(participantArray).scared;
+                    cocktail3.disgusted += GetAverage(participantArray).disgusted;
+                    cocktail3.neutral += GetAverage(participantArray).neutral;
+                }
+
+                // Empty participantArray to use in the next iteration of the loop
+                participantArray = [];
+            }
+
+            if (rawData[i].Gender == "Female" && femaleBox.checked) {
+                if (inAgeRange(rawData[i].Age)) {
+                    participantArray.push(rawData[i]);
+                }
+            }
+            else if (rawData[i].Gender == "Male" && maleBox.checked) {
+                if (inAgeRange(rawData[i].Age)) {
+                    participantArray.push(rawData[i]);
+                }
+            }
+
+            // Current participant and EventMarker are set in previous to compare to in the next iteration of the loop
+            previousParticipant = rawData[i].Participant;
+            previousEventMarker = rawData[i].EventMarker;
+
         }
-        else if (finalArray[i].EventMarker == "P3"){
-            cocktail3.happy += Number(finalArray[i].Happy);
-            cocktail3.sad += Number(finalArray[i].Sad);
-            cocktail3.angry += Number(finalArray[i].Angry);
-            cocktail3.surprised += Number(finalArray[i].Surprised);
-            cocktail3.scared += Number(finalArray[i].Scared);
-            cocktail3.disgusted += Number(finalArray[i].disgusted);
-            cocktail3.neural += Number(finalArray[i].neural);
+    }
+    // Calculate based on position of the slider which frame in the array needs to be displayed, only used for the last iteration
+    if (participantArray.length != 0) {
+        if (previousEventMarker == "P1"){
+            cocktail1.happy += GetAverage(participantArray).happy;
+            cocktail1.sad += GetAverage(participantArray).sad;
+            cocktail1.angry += GetAverage(participantArray).angry;
+            cocktail1.surprised += GetAverage(participantArray).surprised;
+            cocktail1.scared += GetAverage(participantArray).scared;
+            cocktail1.disgusted += GetAverage(participantArray).disgusted;
+            cocktail1.neutral += GetAverage(participantArray).neutral;
+        }
+        else if(previousEventMarker == "P2"){
+            cocktail2.happy += GetAverage(participantArray).happy;
+            cocktail2.sad += GetAverage(participantArray).sad;
+            cocktail2.angry += GetAverage(participantArray).angry;
+            cocktail2.surprised += GetAverage(participantArray).surprised;
+            cocktail2.scared += GetAverage(participantArray).scared;
+            cocktail2.disgusted += GetAverage(participantArray).disgusted;
+            cocktail2.neutral += GetAverage(participantArray).neutral;
+        }
+        else if(previousEventMarker == "P3"){
+            cocktail3.happy += GetAverage(participantArray).happy;
+            cocktail3.sad += GetAverage(participantArray).sad;
+            cocktail3.angry += GetAverage(participantArray).angry;
+            cocktail3.surprised += GetAverage(participantArray).surprised;
+            cocktail3.scared += GetAverage(participantArray).scared;
+            cocktail3.disgusted += GetAverage(participantArray).disgusted;
+            cocktail3.neutral += GetAverage(participantArray).neutral;
         }
     }
 
-    let cocktail1total = cocktail1.happy + cocktail1.sad + cocktail1.angry + cocktail1.surprised + cocktail1.scared + cocktail1.disgusted + cocktail1.neural;
-    let cocktail2total = cocktail2.happy + cocktail2.sad + cocktail2.angry + cocktail2.surprised + cocktail2.scared + cocktail2.disgusted + cocktail2.neural;
-    let cocktail3total = cocktail3.happy + cocktail3.sad + cocktail3.angry + cocktail3.surprised + cocktail3.scared + cocktail3.disgusted + cocktail3.neural;
-    console.log(cocktail1total);
+    let cocktail1total = cocktail1.happy + cocktail1.sad + cocktail1.angry + cocktail1.surprised + cocktail1.scared + cocktail1.disgusted + cocktail1.neutral;
+    let cocktail2total = cocktail2.happy + cocktail2.sad + cocktail2.angry + cocktail2.surprised + cocktail2.scared + cocktail2.disgusted + cocktail2.neutral;
+    let cocktail3total = cocktail3.happy + cocktail3.sad + cocktail3.angry + cocktail3.surprised + cocktail3.scared + cocktail3.disgusted + cocktail3.neutral;
 
     cocktail1 = MakeDivision(cocktail1, cocktail1total);
     cocktail2 = MakeDivision(cocktail2, cocktail2total);
     cocktail3 = MakeDivision(cocktail3, cocktail3total);
 
-    liveBarChart = {cocktail1, cocktail2, cocktail3};
+    barchartArray = {cocktail1, cocktail2, cocktail3};
+    console.log(barchartArray);
 }
 
 function MakeDivision(calcCocktail, Cocktailtotal){
@@ -191,7 +278,41 @@ function MakeDivision(calcCocktail, Cocktailtotal){
     calcCocktail.surprised = calcCocktail.surprised / Cocktailtotal * width;
     calcCocktail.scared = calcCocktail.scared / Cocktailtotal * width;
     calcCocktail.disgusted = calcCocktail.disgusted / Cocktailtotal * width;
-    calcCocktail.neural = calcCocktail.neural / Cocktailtotal * width;
-    console.log(calcCocktail)
+    calcCocktail.neutral = calcCocktail.neutral / Cocktailtotal * width;
     return calcCocktail;
 }
+
+function GetAverage(participantArray){
+    let total = {
+        happy: 0,
+        sad: 0,
+        angry: 0,
+        surprised: 0,
+        scared: 0,
+        disgusted: 0,
+        neutral: 0,
+        counter: 0
+    };
+    for (let i = 0; i < participantArray.length; i++){
+        total.happy += Number(participantArray[i].Happy);
+        total.sad += Number(participantArray[i].Sad);
+        total.angry += Number(participantArray[i].Angry);
+        total.surprised += Number(participantArray[i].Surprised);
+        total.scared += Number(participantArray[i].Scared);
+        total.disgusted += Number(participantArray[i].Disgusted);
+        total.neutral += Number(participantArray[i].Neutral);
+        total.counter ++;
+    }
+
+    total.happy = total.happy / total.counter;
+    total.sad = total.sad / total.counter;
+    total.angry = total.angry / total.counter;
+    total.surprised = total.surprised / total.counter;
+    total.scared = total.scared / total.counter;
+    total.disgusted = total.disgusted / total.counter;
+    total.neutral = total.neutral / total.counter;
+
+    return total;
+}
+
+
