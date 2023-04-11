@@ -23,7 +23,7 @@ let width = 1500;
 let margin = {
     top: 30,
     right: 20,
-    left: 25, //aangepast
+    left: 30, //aangepast
     bottom: 30,
     inbetween: 100
 };
