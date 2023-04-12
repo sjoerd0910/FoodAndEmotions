@@ -7,7 +7,7 @@ if (currentCocktail == "P1") {
     cocktail = "Cocktail 1 - Regular";
 }
 else if (currentCocktail == "P2") {
-    cocktail = "Cocktail 2 - Sour";
+    cocktail = "Cocktail 2 - Sweet";
 }
 else if (currentCocktail == "P3") {
     cocktail = "Cocktail 3 - Bitter";

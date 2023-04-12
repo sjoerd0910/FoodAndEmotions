@@ -6,6 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cocktails and emotions</title>
+    <link rel="icon" type="image/x-icon" href="img/cocktailGlass.png">
+
+    <!-- Social: -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cocktails & Emotions through time">
+    <meta name="twitter:description" content="Visualization of the emotions expressed while experiencing cocktails.">
+    <!-- content below needs to be changed when code is placed in different github/location for the social preview to work -->
+    <meta name="twitter:image" content="https://sjoerd0910.github.io/FoodAndEmotions/img/preview.png">
 
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/visualstyle.css">
@@ -19,7 +27,7 @@
             Cocktails & Emotions
         </h1>
         <h1 class="titleHome">
-            trough time
+            through time
         </h1>
     </div>
     <a class="info" href="AboutTheProject.html">
@@ -45,13 +53,15 @@
             <a id="checkboxAngry" class="EmotionsCheckbox" onclick="ToggleAngry()">Angry</a>
             <a id="checkboxSurprised" class="EmotionsCheckbox" onclick="ToggleSurprised()">Surprised</a>
             <a id="checkboxScared" class="EmotionsCheckbox" onclick="ToggleScared()">Scared</a>
-            <a id="checkboxDisgusted" class="EmotionsCheckbox" onclick="ToggleDisgusted()">Dusgusted</a>
+            <a id="checkboxDisgusted" class="EmotionsCheckbox" onclick="ToggleDisgusted()">Disgusted</a>
             <a id="checkboxNeutral" class="EmotionsCheckbox" onclick="ToggleNeutral()">Neutral</a>
         </div>
 
         <div class="checkboxContainer">
-            <a id="checkboxFemale" class="GenderCheckbox" onclick="ToggleFemale()"><img src="img/femaleblack.png" alt="Unchecked woman symbol" id="FemaleImage" class="GenderImage"></a>
-            <a id="checkboxMale" class="GenderCheckbox" onclick="ToggleMale()"><img src="img/maleblack.png" alt="Unchecked man symbol" id="MaleImage" class="GenderImage"></a>
+            <a id="checkboxFemale" class="GenderCheckbox" onclick="ToggleFemale()"><img src="img/femaleblack.png"
+                    alt="Unchecked woman symbol" id="FemaleImage" class="GenderImage"></a>
+            <a id="checkboxMale" class="GenderCheckbox" onclick="ToggleMale()"><img src="img/maleblack.png"
+                    alt="Unchecked man symbol" id="MaleImage" class="GenderImage"></a>
 
             <div class="checkbox">
                 <p class="checkboxHeaderText">Age:</p>
@@ -75,40 +85,29 @@
                 <p class="checkboxText"> 46+</p>
             </div>
         </div>
-        
-        <!-- <div class="checkboxContainer">
-            <div class="checkbox">
-                <p class="checkboxText">Gender:</p>
-                <input type="checkbox" id="checkboxFemale" class="checkboxgender" checked>
-                <p class="checkboxText"> Female</p>
-            </div>
 
-            <div class="checkbox">
-                <input type="checkbox" id="checkboxMale" class="checkboxgender" checked>
-                <p class="checkboxText"> Male</p>
-            </div>
-
-            
-        </div> -->
 
 
     </div>
 
     <br>
     <h3 class="aboutHeader3">
-        Explaining the visual
+        Explanation
     </h3>
     <p class="aboutText">
-        In this visual you can see the 3 cocktails separated in their own column. Every individual dot, dancing in the
-        visual, represents one emotion form one participant. This means that every participant has 7 dots dancing
-        around. The higher the dot, the stronger the emotion at that given time point. The time slider makes it possible
-        to see the change of the emotions through the experience of the cocktail. The experience includes smelling the
-        cocktail and drinking the cocktail.
+        In this visual you can see the 3 cocktails separated from the TasteLab taseting sessions, each in their own
+        column. Every individual dot, dancing in the visual through time, represents one emotion form one participant.
+        This means that every participant has 7 dots per cocktail representing them. The higher the dot is located on
+        the page, the stronger the emotion at that given time. The time slider makes it possible to see the change of
+        emotions from the participants while experiencing the cocktails. The experience includes smelling and drinking
+        the cocktail.
         <br> <br>
-        It is possible to pause and play the time. To hover over the dots which gives more information about that
-        specific dot. And it is possible to click on a dot. Clicking on a dot directs you to another page in which a
-        new visual is represented. Finally, it is possible to select and deselect different filters, changing the
-        visual.
+        To get more information about a certain participant, just hover your cursor above the dot you want to inspect.
+        This will show the participant, their age and gender. To get even more information about that participant, you
+        can click on a dot. This will bring you to a new page with a new visual representation from that participant.
+        It is also possible to select and deselect different filters such as emotions, gender, or age, which changes the
+        scope of the visual.
+
     </p>
 
     <div class="barchartContainer">
@@ -119,12 +118,12 @@
 
     <br>
     <h3 class="aboutHeader3">
-        Explaining the visual
+        Explanation
     </h3>
     <p class="aboutText">
-        In this visual you can see the 3 cocktails separated in their own row. The width of the color represents the
-        average amount of that emotion measured across all participants. The colors representing the emotion are the
-        same as the colors in the visual above.
+        In this visual you can see the 3 cocktails separated in their own row. The width of the bars represents the
+        average percentage of emotion measured across all participants.
+        The colors used are the same as in the visual on the top of this page.
     </p>
 
     <br>

@@ -19,7 +19,7 @@ let scatterplot = d3.select(".scatterplotContainer").append("svg")
 
 // Create x scale in visual
 const xScale = d3.scaleBand()
-    .domain(["Cocktail 1 - Regular", "Cocktail 2 - Sour", "Cocktail 3 - Bitter"])
+    .domain(["Cocktail 1 - Regular", "Cocktail 2 - Sweet", "Cocktail 3 - Bitter"])
     .range([0, width - margin.left - margin.right]);
 
 // Create y scale in visual
@@ -177,7 +177,7 @@ function makeVisual() {
                 cocktail = "Cocktail 1 - Regular";
             }
             else if (d.EventMarker == "P2") {
-                cocktail = "Cocktail 2 - Sour";
+                cocktail = "Cocktail 2 - Sweet";
             }
             else if (d.EventMarker == "P3") {
                 cocktail = "Cocktail 3 - Bitter";
@@ -253,7 +253,7 @@ const barxScale = d3.scaleLinear()
 
 // Create y scale in visual
 const baryScale = d3.scaleBand()
-    .domain(["Cocktail 3 - Bitter", "Cocktail 2 - Sour", "Cocktail 1 - Regular"])
+    .domain(["Cocktail 3 - Bitter", "Cocktail 2 - Sweet", "Cocktail 1 - Regular"])
     .range([height - margin.bottom - margin.top, 0]);
 
 // Create axiscontainer for visual
