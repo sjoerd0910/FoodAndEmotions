@@ -15,10 +15,13 @@ body {
 h1 {
     font-family: 'Anton', sans-serif;
     color: #F1F1F1;
-    font-size: 6vw;
-    /* font-size: 90px; */
+    font-size: 90px;
     margin-bottom: 0;
     margin-top: 0;
+}
+
+.titleHome {
+    font-size: 6vw;
 }
 
 h2 {
@@ -55,15 +58,15 @@ h4 {
 
 }
 
-.aboutHeader2{
+.aboutHeader2 {
     margin-top: 40px;
 }
 
-.aboutHeader3{
+.aboutHeader3 {
     margin-top: 25px;
 }
 
-.aboutHeader4{
+.aboutHeader4 {
     margin-bottom: 5px;
     margin-top: 20px;
     letter-spacing: 1px;
@@ -74,7 +77,7 @@ p {
     font-family: 'Open Sans', sans-serif;
 }
 
-a{
+a {
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -154,7 +157,7 @@ a{
     z-index: 1;
 }
 
-.info{
+.info {
     position: absolute;
     z-index: 3;
     margin-right: 2%;

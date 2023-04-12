@@ -33,12 +33,12 @@ function loadData() {
         // If the current participant is equal to the previous participant and if the current EventMarker is equal to the 
         // previous EventMarker, the current iteration can be added to the participantArray
         if (rawData[i].Participant == previousParticipant && rawData[i].EventMarker == previousEventMarker) {
-            if (rawData[i].Gender == "Female" && femaleBox.checked) {
+            if (rawData[i].Gender == "Female" && femaleBox) {
                 if (inAgeRange(rawData[i].Age)) {
                     participantArray.push(rawData[i]);
                 }
             }
-            else if (rawData[i].Gender == "Male" && maleBox.checked) {
+            else if (rawData[i].Gender == "Male" && maleBox) {
                 if (inAgeRange(rawData[i].Age)) {
                     participantArray.push(rawData[i]);
                 }
@@ -64,12 +64,12 @@ function loadData() {
                 participantArray = [];
             }
 
-            if (rawData[i].Gender == "Female" && femaleBox.checked) {
+            if (rawData[i].Gender == "Female" && femaleBox) {
                 if (inAgeRange(rawData[i].Age)) {
                     participantArray.push(rawData[i]);
                 }
             }
-            else if (rawData[i].Gender == "Male" && maleBox.checked) {
+            else if (rawData[i].Gender == "Male" && maleBox) {
                 if (inAgeRange(rawData[i].Age)) {
                     participantArray.push(rawData[i]);
                 }
@@ -157,12 +157,12 @@ function CalculateBarchart() {
         // If the current participant is equal to the previous participant and if the current EventMarker is equal to the 
         // previous EventMarker, the current iteration can be added to the participantArray
         if (rawData[i].Participant == previousParticipant && rawData[i].EventMarker == previousEventMarker) {
-            if (rawData[i].Gender == "Female" && femaleBox.checked) {
+            if (rawData[i].Gender == "Female" && femaleBox) {
                 if (inAgeRange(rawData[i].Age)) {
                     participantArray.push(rawData[i]);
                 }
             }
-            else if (rawData[i].Gender == "Male" && maleBox.checked) {
+            else if (rawData[i].Gender == "Male" && maleBox) {
                 if (inAgeRange(rawData[i].Age)) {
                     participantArray.push(rawData[i]);
                 }
@@ -210,12 +210,12 @@ function CalculateBarchart() {
                 participantArray = [];
             }
 
-            if (rawData[i].Gender == "Female" && femaleBox.checked) {
+            if (rawData[i].Gender == "Female" && femaleBox) {
                 if (inAgeRange(rawData[i].Age)) {
                     participantArray.push(rawData[i]);
                 }
             }
-            else if (rawData[i].Gender == "Male" && maleBox.checked) {
+            else if (rawData[i].Gender == "Male" && maleBox) {
                 if (inAgeRange(rawData[i].Age)) {
                     participantArray.push(rawData[i]);
                 }

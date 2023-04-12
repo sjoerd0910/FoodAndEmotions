@@ -9,8 +9,9 @@ let disgustedBox = true;
 let neutralBox = false;
 
 // Get all checkbox elements for each gender
-let femaleBox = document.getElementById('checkboxFemale');
-let maleBox = document.getElementById('checkboxMale');
+
+let femaleBox = true;
+let maleBox = true;
 
 // Get all checkbox elements for each age range
 const age1825Box = document.getElementById('checkbox1825');
@@ -79,7 +80,7 @@ function ToggleAngry(){
         document.getElementById("checkboxAngry").style.color = "#000000";
 
     } else {
-        // Removes all circles from the class sad and creates new visual
+        // Removes all circles from the class angry and creates new visual
         scatterplot.selectAll(".angry").remove();
 
         //Makes button grey and text white
@@ -101,7 +102,7 @@ function ToggleSurprised(){
         document.getElementById("checkboxSurprised").style.color = "#000000";
 
     } else {
-        // Removes all circles from the class sad and creates new visual
+        // Removes all circles from the class surprised and creates new visual
         scatterplot.selectAll(".surprised").remove();
 
         //Makes button grey and text white
@@ -123,7 +124,7 @@ function ToggleScared(){
         document.getElementById("checkboxScared").style.color = "#000000";
 
     } else {
-        // Removes all circles from the class sad and creates new visual
+        // Removes all circles from the class scared and creates new visual
         scatterplot.selectAll(".scared").remove();
 
         //Makes button grey and text white
@@ -145,7 +146,7 @@ function ToggleDisgusted(){
         document.getElementById("checkboxDisgusted").style.color = "#000000";
 
     } else {
-        // Removes all circles from the class sad and creates new visual
+        // Removes all circles from the class disgusted and creates new visual
         scatterplot.selectAll(".disgusted").remove();
 
         //Makes button grey and text white
@@ -167,7 +168,7 @@ function ToggleNeutral(){
         document.getElementById("checkboxNeutral").style.color = "#000000";
 
     } else {
-        // Removes all circles from the class sad and creates new visual
+        // Removes all circles from the class neutral and creates new visual
         scatterplot.selectAll(".neutral").remove();
 
         //Makes button grey and text white
@@ -180,33 +181,52 @@ function ToggleNeutral(){
 
 // Define EventListeners genders
 
-// Listens for events happening on femaleBox checkbox
-femaleBox.addEventListener('change', (event) => {
-    if (event.currentTarget.checked) {
-        // Removes all circles, loads new data based on filters and creates new visual
+// Define toggle function for the female checkbox
+function ToggleFemale(){
+    femaleBox = !femaleBox //toggles femaleBox variable to true or false
+    if (femaleBox) {
+        // Removes all circles and creates new visual
         scatterplot.selectAll("circle").remove();
         makeVisual();
+
+        //Makes button pink and image black
+        document.getElementById("checkboxFemale").style.backgroundColor = "#ffc0cb";
+        document.getElementById("FemaleImage").src="img/femaleblack.png";
 
     } else {
-        // Removes all circles, loads new data based on filters and creates new visual
+        // Removes all circles and creates new visual
         scatterplot.selectAll("circle").remove();
         makeVisual();
-    }
-})
 
-// Listens for events happening on maleBox checkbox
-maleBox.addEventListener('change', (event) => {
-    if (event.currentTarget.checked) {
-        // Removes all circles, loads new data based on filters and creates new visual
+        //Makes button grey and image white
+        document.getElementById("checkboxFemale").style.backgroundColor = "#3f3e3e";
+        document.getElementById("FemaleImage").src="img/femalewhite.png";
+    }
+}
+
+
+// Define toggle function for the male checkbox
+function ToggleMale(){
+    maleBox = !maleBox //toggles maleBox variable to true or false
+    if (maleBox) {
+        // Removes all circles and creates new visual
         scatterplot.selectAll("circle").remove();
         makeVisual();
+
+        //Makes button lightblue and image black
+        document.getElementById("checkboxMale").style.backgroundColor = "#87cefa";
+        document.getElementById("MaleImage").src="img/maleblack.png";
 
     } else {
-        // Removes all circles, loads new data based on filters and creates new visual
+        // Removes all circles and creates new visual
         scatterplot.selectAll("circle").remove();
         makeVisual();
+
+        //Makes button grey and image white
+        document.getElementById("checkboxMale").style.backgroundColor = "#3f3e3e";
+        document.getElementById("MaleImage").src="img/malewhite.png";
     }
-})
+}
 
 // Define EventListeners ages
 

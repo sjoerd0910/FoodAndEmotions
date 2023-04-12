@@ -64,6 +64,8 @@
 
 .checkboxContainer {
     display: flex;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 .checkbox {
@@ -77,13 +79,12 @@ input {
     margin-right: 0.5em;
 }
 
-/* .checkboxesHeaderText {
+.checkboxHeaderText {
     color: #F1F1F1;
-    font-weight: 700;
-    font-size: 1.5em;
-    margin-left: 1em;
-
-} disused */
+    font-weight: 600;
+    font-size: large;
+    margin-right: 5px;
+} 
 
 .checkboxText {
     color: #F1F1F1;
@@ -138,9 +139,34 @@ input {
     filter: brightness(130%);
 }
 
+#checkboxFemale {
+    background-color: #ffc0cb;
+}
 
+#checkboxMale {
+    background-color: #87cefa;
 
+}
 
+.GenderCheckbox{
+    width: auto;
+    margin-left: 1em;
+    margin-right: 1em;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.GenderCheckbox:hover{
+    filter: brightness(130%);
+}
+
+.GenderImage{
+    height: 25px;
+}
 
 
 /* svg visual css properties */

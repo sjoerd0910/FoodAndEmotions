@@ -15,10 +15,10 @@
 <body>
 
     <div class="toptext">
-        <h1>
+        <h1 class="titleHome">
             Cocktails & Emotions
         </h1>
-        <h1>
+        <h1 class="titleHome">
             trough time
         </h1>
     </div>
@@ -39,7 +39,7 @@
 
     <div class="filters">
 
-        <div class="legendContainer">
+        <div class="checkboxContainer">
             <a id="checkboxHappy" class="EmotionsCheckbox" onclick="ToggleHappy()">Happy</a>
             <a id="checkboxSad" class="EmotionsCheckbox" onclick="ToggleSad()">Sad</a>
             <a id="checkboxAngry" class="EmotionsCheckbox" onclick="ToggleAngry()">Angry</a>
@@ -50,19 +50,11 @@
         </div>
 
         <div class="checkboxContainer">
-            <div class="checkbox">
-                <p class="checkboxText">Gender:</p>
-                <input type="checkbox" id="checkboxFemale" class="checkboxgender" checked>
-                <p class="checkboxText"> Female</p>
-            </div>
+            <a id="checkboxFemale" class="GenderCheckbox" onclick="ToggleFemale()"><img src="img/femaleblack.png" alt="Unchecked woman symbol" id="FemaleImage" class="GenderImage"></a>
+            <a id="checkboxMale" class="GenderCheckbox" onclick="ToggleMale()"><img src="img/maleblack.png" alt="Unchecked man symbol" id="MaleImage" class="GenderImage"></a>
 
             <div class="checkbox">
-                <input type="checkbox" id="checkboxMale" class="checkboxgender" checked>
-                <p class="checkboxText"> Male</p>
-            </div>
-
-            <div class="checkbox">
-                <p class="checkboxText">Age:</p>
+                <p class="checkboxHeaderText">Age:</p>
 
                 <input type="checkbox" id="checkbox1825" class="checkboxage" checked>
                 <p class="checkboxText"> 18-25</p>
@@ -83,6 +75,21 @@
                 <p class="checkboxText"> 46+</p>
             </div>
         </div>
+        
+        <!-- <div class="checkboxContainer">
+            <div class="checkbox">
+                <p class="checkboxText">Gender:</p>
+                <input type="checkbox" id="checkboxFemale" class="checkboxgender" checked>
+                <p class="checkboxText"> Female</p>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkboxMale" class="checkboxgender" checked>
+                <p class="checkboxText"> Male</p>
+            </div>
+
+            
+        </div> -->
 
 
     </div>
