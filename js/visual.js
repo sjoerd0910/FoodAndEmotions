@@ -164,11 +164,6 @@ function makeVisual() {
     }
 
 
-
-    // variable necessary to give the participant number to the next html page
-    var currentParticipant = "";
-    var currentCocktail = "";
-
     //essential for hover functionality
     d3.selectAll("circle")
         .on("mouseover", function (event, d) {
@@ -207,14 +202,16 @@ function makeVisual() {
         // navigating to the next visual
         .on("click", function (event, d) {
             // get the link to the new HTML page
-            var link = "uservisual.html";
+            const link = "uservisual.html";
 
             // get the current participant to be able to give the participant number to the next html page
-            currentParticipant = d.Participant;
-            sessionStorage.setItem("currentParticipant", currentParticipant);
+            sessionStorage.setItem("currentParticipant", d.Participant);
 
-            currentCocktail = d.EventMarker;
-            sessionStorage.setItem("currentCocktail", currentCocktail);
+            sessionStorage.setItem("currentCocktail", d.EventMarker);
+
+            sessionStorage.setItem("currentGender", d.Gender); 
+            
+            sessionStorage.setItem("currentAge", d.Age);
 
             // navigate to the new HTML page with the query string
             window.location.href = link;

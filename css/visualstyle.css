@@ -123,6 +123,11 @@ input {
 
 }
 
+#legendNeutral {
+    background-color: #8f8f8f;
+    margin-right: 1em;
+}
+
 .EmotionsCheckbox{
     width: auto;
     margin-left: auto;

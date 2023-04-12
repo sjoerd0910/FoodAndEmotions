@@ -1,6 +1,7 @@
 // current participant number given by the previous html page
 var currentParticipant = sessionStorage.getItem("currentParticipant");
 var currentCocktail = sessionStorage.getItem("currentCocktail");
+var currentGender = sessionStorage.getItem("currentGender"); var currentAge = sessionStorage.getItem("currentAge");
 
 let cocktail;
 if (currentCocktail == "P1") {
@@ -13,8 +14,9 @@ else if (currentCocktail == "P3") {
     cocktail = "Cocktail 3 - Bitter";
 }
 
-document.getElementById("participantTitle").innerHTML = `Participant ${currentParticipant} trough time`;
+document.getElementById("participantTitle").innerHTML = `Participant ${currentParticipant} through time`;
 document.getElementById("cocktailTitle").innerHTML = cocktail;
+document.getElementById("cocktailVariable").innerHTML =`Gender: ${currentGender} &nbsp &nbsp Age: ${currentAge}`;
 
 let height = 500;
 let width = 1500;
@@ -23,7 +25,7 @@ let width = 1500;
 let margin = {
     top: 30,
     right: 20,
-    left: 30, //aangepast
+    left: 35, //aangepast
     bottom: 30,
     inbetween: 100
 };
@@ -37,7 +39,7 @@ const xScale = d3.scaleBand()
     .range([0, width - margin.left - margin.right]);
 
 const yScale = d3.scaleLinear()
-    .domain([0, 1])
+    .domain([0, 100])
     .range([height - margin.bottom - margin.top, 0]);
 
 const axisContainer = svg.append("g")
@@ -75,6 +77,13 @@ let finalArrayParticipant = [];
     let scale = (width - margin.left - margin.right) / finalArrayParticipant.length;
     for (let j = 0; j < finalArrayParticipant.length; j++) {
         finalArrayParticipant[j].VideoTime = j * scale;
+        finalArrayParticipant[j].Happy = finalArrayParticipant[j].Happy * 100;
+        finalArrayParticipant[j].Sad = finalArrayParticipant[j].Sad * 100;
+        finalArrayParticipant[j].Angry = finalArrayParticipant[j].Angry * 100;
+        finalArrayParticipant[j].Surprised = finalArrayParticipant[j].Surprised * 100;
+        finalArrayParticipant[j].Scared = finalArrayParticipant[j].Scared * 100;
+        finalArrayParticipant[j].Disgusted = finalArrayParticipant[j].Disgusted * 100;
+        finalArrayParticipant[j].Neutral = finalArrayParticipant[j].Neutral * 100;
     }
 
     console.log(finalArrayParticipant);
@@ -237,7 +246,7 @@ let finalArrayParticipant = [];
                 .duration(200)
                 .style("opacity", 1);
 
-            tooltip.html(`Gender: ${d.Gender} <br/> Age: ${d.Age} <br/> Drink: ${cocktail} <br/> Happy: ${d.Happy} <br/> Sad: ${d.Sad} <br/> Angry: ${d.Angry} <br/> Surprised: ${d.Surprised} <br/> Scared: ${d.Scared} <br/> Disgusted: ${d.Disgusted} <br/> Neutral: ${d.Neutral}`)
+            tooltip.html(`Happy: ${d.Happy} <br/> Sad: ${d.Sad} <br/> Angry: ${d.Angry} <br/> Surprised: ${d.Surprised} <br/> Scared: ${d.Scared} <br/> Disgusted: ${d.Disgusted} <br/> Neutral: ${d.Neutral}`)
                 .style("left", (event.pageX) + "px")
                 .style("top", (event.pageY - 28) + "px");
         })
