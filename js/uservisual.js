@@ -109,14 +109,14 @@ let finalArrayParticipant = [];
         .attr("x1", x1)
         .attr("x2", x2)
         .attr("y1", function (d, i) {
-            return yScale(d.Happy);
+            return yScale(d.Happy) + margin.top;
         })
         .attr("y2", function (d, i) {
             if (i < (finalArrayParticipant.length - 1)) {
-                return yScale(finalArrayParticipant[(i + 1)].Happy);
+                return yScale(finalArrayParticipant[(i + 1)].Happy) + margin.top;
             }
             else {
-                return yScale(d.Happy);
+                return yScale(d.Happy) + margin.top;
             }
         })
         .attr("class", "userline")
@@ -128,14 +128,14 @@ let finalArrayParticipant = [];
         .attr("x1", x1)
         .attr("x2", x2)
         .attr("y1", function (d, i) {
-            return yScale(d.Sad);
+            return yScale(d.Sad) + margin.top;
         })
         .attr("y2", function (d, i) {
             if (i < (finalArrayParticipant.length - 1)) {
-                return yScale(finalArrayParticipant[(i + 1)].Sad);
+                return yScale(finalArrayParticipant[(i + 1)].Sad) + margin.top;
             }
             else {
-                return yScale(d.Sad);
+                return yScale(d.Sad) + margin.top;
             }
         })
         .attr("class", "userline")
@@ -146,14 +146,14 @@ let finalArrayParticipant = [];
         .attr("x1", x1)
         .attr("x2", x2)
         .attr("y1", function (d, i) {
-            return yScale(d.Angry);
+            return yScale(d.Angry) + margin.top;
         })
         .attr("y2", function (d, i) {
             if (i < (finalArrayParticipant.length - 1)) {
-                return yScale(finalArrayParticipant[(i + 1)].Angry);
+                return yScale(finalArrayParticipant[(i + 1)].Angry) + margin.top;
             }
             else {
-                return yScale(d.Angry);
+                return yScale(d.Angry) + margin.top;
             }
         })
         .attr("class", "userline")
@@ -164,14 +164,14 @@ let finalArrayParticipant = [];
         .attr("x1", x1)
         .attr("x2", x2)
         .attr("y1", function (d, i) {
-            return yScale(d.Surprised);
+            return yScale(d.Surprised) + margin.top;
         })
         .attr("y2", function (d, i) {
             if (i < (finalArrayParticipant.length - 1)) {
-                return yScale(finalArrayParticipant[(i + 1)].Surprised);
+                return yScale(finalArrayParticipant[(i + 1)].Surprised) + margin.top;
             }
             else {
-                return yScale(d.Surprised);
+                return yScale(d.Surprised) + margin.top;
             }
         })
         .attr("class", "userline")
@@ -182,14 +182,14 @@ let finalArrayParticipant = [];
         .attr("x1", x1)
         .attr("x2", x2)
         .attr("y1", function (d, i) {
-            return yScale(d.Scared);
+            return yScale(d.Scared) + margin.top;
         })
         .attr("y2", function (d, i) {
             if (i < (finalArrayParticipant.length - 1)) {
-                return yScale(finalArrayParticipant[(i + 1)].Scared);
+                return yScale(finalArrayParticipant[(i + 1)].Scared) + margin.top;
             }
             else {
-                return yScale(d.Scared);
+                return yScale(d.Scared) + margin.top;
             }
         })
         .attr("class", "userline")
@@ -200,14 +200,14 @@ let finalArrayParticipant = [];
         .attr("x1", x1)
         .attr("x2", x2)
         .attr("y1", function (d, i) {
-            return yScale(d.Disgusted);
+            return yScale(d.Disgusted) + margin.top;
         })
         .attr("y2", function (d, i) {
             if (i < (finalArrayParticipant.length - 1)) {
-                return yScale(finalArrayParticipant[(i + 1)].Disgusted);
+                return yScale(finalArrayParticipant[(i + 1)].Disgusted) + margin.top;
             }
             else {
-                return yScale(d.Disgusted);
+                return yScale(d.Disgusted) + margin.top;
             }
         })
         .attr("class", "userline")
@@ -218,14 +218,14 @@ let finalArrayParticipant = [];
         .attr("x1", x1)
         .attr("x2", x2)
         .attr("y1", function (d, i) {
-            return yScale(d.Neutral);
+            return yScale(d.Neutral) + margin.top;
         })
         .attr("y2", function (d, i) {
             if (i < (finalArrayParticipant.length - 1)) {
-                return yScale(finalArrayParticipant[(i + 1)].Neutral);
+                return yScale(finalArrayParticipant[(i + 1)].Neutral) + margin.top;
             }
             else {
-                return yScale(d.Neutral);
+                return yScale(d.Neutral) + margin.top;
             }
         })
         .attr("class", "userline")
