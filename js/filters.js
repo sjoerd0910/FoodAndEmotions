@@ -1,5 +1,4 @@
 // Define variables for all emotions
-
 let happyBox = true;
 let sadBox = true;
 let angryBox = true;
@@ -9,9 +8,8 @@ let disgustedBox = true;
 let neutralBox = false;
 
 // Get all checkbox elements for each gender
-
-let femaleBox = true;
-let maleBox = true;
+const femaleBox = document.getElementById('checkboxFemale');
+const maleBox = document.getElementById('checkboxMale');
 
 // Get all checkbox elements for each age range
 const age1825Box = document.getElementById('checkbox1825');
@@ -181,52 +179,34 @@ function ToggleNeutral(){
 
 // Define EventListeners genders
 
-// Define toggle function for the female checkbox
-function ToggleFemale(){
-    femaleBox = !femaleBox //toggles femaleBox variable to true or false
-    if (femaleBox) {
-        // Removes all circles and creates new visual
+// Listens for events happening on female checkbox
+femaleBox.addEventListener('change', (event) => {
+    if (event.currentTarget.checked) {
+        // Removes all circles, loads new data based on filters and creates new visual
         scatterplot.selectAll("circle").remove();
         makeVisual();
-
-        //Makes button pink and image black
-        document.getElementById("checkboxFemale").style.backgroundColor = "#ffc0cb";
-        document.getElementById("FemaleImage").src="img/femaleblack.png";
 
     } else {
-        // Removes all circles and creates new visual
+        // Removes all circles, loads new data based on filters and creates new visual
         scatterplot.selectAll("circle").remove();
         makeVisual();
-
-        //Makes button grey and image white
-        document.getElementById("checkboxFemale").style.backgroundColor = "#3f3e3e";
-        document.getElementById("FemaleImage").src="img/femalewhite.png";
     }
-}
+})
 
 
-// Define toggle function for the male checkbox
-function ToggleMale(){
-    maleBox = !maleBox //toggles maleBox variable to true or false
-    if (maleBox) {
-        // Removes all circles and creates new visual
+// Listens for events happening on male checkbox
+maleBox.addEventListener('change', (event) => {
+    if (event.currentTarget.checked) {
+        // Removes all circles, loads new data based on filters and creates new visual
         scatterplot.selectAll("circle").remove();
         makeVisual();
-
-        //Makes button lightblue and image black
-        document.getElementById("checkboxMale").style.backgroundColor = "#87cefa";
-        document.getElementById("MaleImage").src="img/maleblack.png";
 
     } else {
-        // Removes all circles and creates new visual
+        // Removes all circles, loads new data based on filters and creates new visual
         scatterplot.selectAll("circle").remove();
         makeVisual();
-
-        //Makes button grey and image white
-        document.getElementById("checkboxMale").style.backgroundColor = "#3f3e3e";
-        document.getElementById("MaleImage").src="img/malewhite.png";
     }
-}
+})
 
 // Define EventListeners ages
 

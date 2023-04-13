@@ -84,6 +84,7 @@ input {
     font-weight: 600;
     font-size: large;
     margin-right: 5px;
+    margin-left: 1em;
 } 
 
 .checkboxText {
@@ -144,34 +145,9 @@ input {
     filter: brightness(130%);
 }
 
-#checkboxFemale {
-    background-color: #ffc0cb;
-}
 
-#checkboxMale {
-    background-color: #87cefa;
 
-}
 
-.GenderCheckbox{
-    width: auto;
-    margin-left: 1em;
-    margin-right: 1em;
-    padding-left: 2%;
-    padding-right: 2%;
-    padding-bottom: 2px;
-    padding-top: 2px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.GenderCheckbox:hover{
-    filter: brightness(130%);
-}
-
-.GenderImage{
-    height: 25px;
-}
 
 
 /* svg visual css properties */
