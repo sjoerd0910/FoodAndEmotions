@@ -65,6 +65,13 @@ slider.oninput = function () {
 
     isPlaying = false; // Set boolean value to false to stop playing
 
+    if(isPlaying){
+        document.getElementById("playpauseButton").src="img/pause.png";
+    }
+    else{
+        document.getElementById("playpauseButton").src="img/play.png";
+    }
+    
     //update the graph visual
     updateVisual();
 
