@@ -25,7 +25,7 @@ let width = 1500;
 let margin = {
     top: 30,
     right: 20,
-    left: 35, //aangepast
+    left: 40, //aangepast
     bottom: 30,
     inbetween: 100
 };

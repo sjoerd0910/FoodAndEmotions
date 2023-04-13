@@ -21,80 +21,83 @@
 </head>
 
 <body>
+    <!-- <div style="height: 100vh;"> -->
 
-    <div class="toptext">
-        <h1 class="titleHome">
-            Cocktails & Emotions
-        </h1>
-        <h1 class="titleHome">
-            through time
-        </h1>
-    </div>
-    <a class="info" href="about.html">
-        <img src="img/info.png" alt="info button" id="infoImage"></img>
-    </a>
-
-
-
-    <div class="scatterplotContainer" onclick="togglePlaying()">
-    </div>
-
-    <div class="slidecontainer">
-        <img src="img/pause.png" alt="Pause button" id="playpauseButton" onclick="togglePlaying()">
-        <input type="range" class="slider" id="timeSlider">
-    </div>
+        <div class="toptext">
+            <h1 class="titleHome">
+                Cocktails & Emotions
+            </h1>
+            <h1 class="titleHome">
+                through time
+            </h1>
+        </div>
+        <a class="info" href="about.html">
+            <img src="img/info.png" alt="info button" id="infoImage"></img>
+        </a>
 
 
-    <div class="filters">
 
-        <div class="checkboxContainer">
-            <a id="checkboxHappy" class="EmotionsCheckbox" onclick="ToggleHappy()">Happy</a>
-            <a id="checkboxSad" class="EmotionsCheckbox" onclick="ToggleSad()">Sad</a>
-            <a id="checkboxAngry" class="EmotionsCheckbox" onclick="ToggleAngry()">Angry</a>
-            <a id="checkboxSurprised" class="EmotionsCheckbox" onclick="ToggleSurprised()">Surprised</a>
-            <a id="checkboxScared" class="EmotionsCheckbox" onclick="ToggleScared()">Scared</a>
-            <a id="checkboxDisgusted" class="EmotionsCheckbox" onclick="ToggleDisgusted()">Disgusted</a>
-            <a id="checkboxNeutral" class="EmotionsCheckbox" onclick="ToggleNeutral()">Neutral</a>
+        <div class="scatterplotContainer" onclick="togglePlaying()">
         </div>
 
-        <div class="checkboxContainer">
-            <a id="checkboxFemale" class="GenderCheckbox" onclick="ToggleFemale()"><img src="img/femaleblack.png"
-                    alt="Unchecked woman symbol" id="FemaleImage" class="GenderImage"></a>
-            <a id="checkboxMale" class="GenderCheckbox" onclick="ToggleMale()"><img src="img/maleblack.png"
-                    alt="Unchecked man symbol" id="MaleImage" class="GenderImage"></a>
-
-            <div class="checkbox">
-                <p class="checkboxHeaderText">Age:</p>
-
-                <input type="checkbox" id="checkbox1825" class="checkboxage" checked>
-                <p class="checkboxText"> 18-25</p>
-            </div>
-
-            <div class="checkbox">
-                <input type="checkbox" id="checkbox2635" class="checkboxage" checked>
-                <p class="checkboxText"> 26-35</p>
-            </div>
-
-            <div class="checkbox">
-                <input type="checkbox" id="checkbox3645" class="checkboxage" checked>
-                <p class="checkboxText"> 36-45</p>
-            </div>
-
-            <div class="checkbox">
-                <input type="checkbox" id="checkbox46" class="checkboxage" checked>
-                <p class="checkboxText"> 46+</p>
-            </div>
+        <div class="slidecontainer">
+            <img src="img/pause.png" alt="Pause button" id="playpauseButton" onclick="togglePlaying()">
+            <input type="range" class="slider" id="timeSlider">
         </div>
 
 
+        <div class="filters">
 
-    </div>
+            <div class="checkboxContainer">
+                <a id="checkboxHappy" class="EmotionsCheckbox" onclick="ToggleHappy()">Happy</a>
+                <a id="checkboxSad" class="EmotionsCheckbox" onclick="ToggleSad()">Sad</a>
+                <a id="checkboxAngry" class="EmotionsCheckbox" onclick="ToggleAngry()">Angry</a>
+                <a id="checkboxSurprised" class="EmotionsCheckbox" onclick="ToggleSurprised()">Surprised</a>
+                <a id="checkboxScared" class="EmotionsCheckbox" onclick="ToggleScared()">Scared</a>
+                <a id="checkboxDisgusted" class="EmotionsCheckbox" onclick="ToggleDisgusted()">Disgusted</a>
+                <a id="checkboxNeutral" class="EmotionsCheckbox" onclick="ToggleNeutral()">Neutral</a>
+            </div>
+
+            <div class="checkboxContainer">
+                <a id="checkboxFemale" class="GenderCheckbox" onclick="ToggleFemale()"><img src="img/femaleblack.png"
+                        alt="Unchecked woman symbol" id="FemaleImage" class="GenderImage"></a>
+                <a id="checkboxMale" class="GenderCheckbox" onclick="ToggleMale()"><img src="img/maleblack.png"
+                        alt="Unchecked man symbol" id="MaleImage" class="GenderImage"></a>
+
+                <div class="checkbox">
+                    <p class="checkboxHeaderText">Age:</p>
+
+                    <input type="checkbox" id="checkbox1825" class="checkboxage" checked>
+                    <p class="checkboxText"> 18-25</p>
+                </div>
+
+                <div class="checkbox">
+                    <input type="checkbox" id="checkbox2635" class="checkboxage" checked>
+                    <p class="checkboxText"> 26-35</p>
+                </div>
+
+                <div class="checkbox">
+                    <input type="checkbox" id="checkbox3645" class="checkboxage" checked>
+                    <p class="checkboxText"> 36-45</p>
+                </div>
+
+                <div class="checkbox">
+                    <input type="checkbox" id="checkbox46" class="checkboxage" checked>
+                    <p class="checkboxText"> 46+</p>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    <!-- </div> -->
 
     <br>
     <h3 class="aboutHeader3">
         Explanation
     </h3>
-    <p class="aboutText">
+    <p class="aboutText" style="min-width: 50px;">
         In this visual you can see the 3 cocktails separated from the TasteLab taseting sessions, each in their own
         column. Every individual dot, dancing in the visual through time, represents one emotion form one participant.
         This means that every participant has 7 dots per cocktail representing them. The higher the dot is located on

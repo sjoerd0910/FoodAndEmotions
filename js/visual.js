@@ -9,7 +9,7 @@ let margin = {
     left: 20,
     bottom: 30,
     inbetween: 100,
-    barchartleft: 150
+    barchartleft: 170
 };
 
 // Create SVG for visual
