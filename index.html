@@ -5,246 +5,136 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cocktails and emotions</title>
+    <link rel="icon" type="image/x-icon" href="img/cocktailGlass.png">
 
+    <!-- Social: -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cocktails & Emotions through time">
+    <meta name="twitter:description" content="Visualization of the emotions expressed while experiencing cocktails.">
+    <!-- content below needs to be changed when code is placed in different github/location for the social preview to work -->
+    <meta name="twitter:image" content="https://sjoerd0910.github.io/FoodAndEmotions/img/preview.png">
 
-    <style>
-        .slidecontainer {
-            width: 100%;
-        }
-
-        .slider {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 25px;
-            background: #d3d3d3;
-            outline: none;
-            opacity: 0.7;
-            -webkit-transition: .2s;
-            transition: opacity .2s;
-        }
-
-        .slider:hover {
-            opacity: 1;
-        }
-
-        .slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 25px;
-            height: 25px;
-            background: #04AA6D;
-            cursor: pointer;
-        }
-
-        .slider::-moz-range-thumb {
-            width: 25px;
-            height: 25px;
-            background: #04AA6D;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/visualstyle.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
+    <div class="toptext">
+        <h1 class="titleHome">
+            Cocktails & Emotions
+        </h1>
+        <h1 class="titleHome">
+            through time
+        </h1>
+    </div>
+    <a class="info" href="about.html">
+        <img src="img/info.png" alt="info button" id="infoImage"></img>
+    </a>
+
+
+
+    <div class="scatterplotContainer" onclick="togglePlaying()">
+    </div>
+
     <div class="slidecontainer">
-        <input type="range" min="0" max="20000" value="0" class="slider" id="myRange">
-        <p>Value: <span id="demo"></span></p>
+        <img src="img/pause.png" alt="Pause button" id="playpauseButton" onclick="togglePlaying()">
+        <input type="range" class="slider" id="timeSlider">
     </div>
 
 
+    <div class="filters">
+
+        <div class="checkboxContainer">
+            <a id="checkboxHappy" class="EmotionsCheckbox" onclick="ToggleHappy()">Happy</a>
+            <a id="checkboxSad" class="EmotionsCheckbox" onclick="ToggleSad()">Sad</a>
+            <a id="checkboxAngry" class="EmotionsCheckbox" onclick="ToggleAngry()">Angry</a>
+            <a id="checkboxSurprised" class="EmotionsCheckbox" onclick="ToggleSurprised()">Surprised</a>
+            <a id="checkboxScared" class="EmotionsCheckbox" onclick="ToggleScared()">Scared</a>
+            <a id="checkboxDisgusted" class="EmotionsCheckbox" onclick="ToggleDisgusted()">Disgusted</a>
+            <a id="checkboxNeutral" class="EmotionsCheckbox" onclick="ToggleNeutral()">Neutral</a>
+        </div>
+
+        <div class="checkboxContainer">
+            <a id="checkboxFemale" class="GenderCheckbox" onclick="ToggleFemale()"><img src="img/femaleblack.png"
+                    alt="Unchecked woman symbol" id="FemaleImage" class="GenderImage"></a>
+            <a id="checkboxMale" class="GenderCheckbox" onclick="ToggleMale()"><img src="img/maleblack.png"
+                    alt="Unchecked man symbol" id="MaleImage" class="GenderImage"></a>
+
+            <div class="checkbox">
+                <p class="checkboxHeaderText">Age:</p>
+
+                <input type="checkbox" id="checkbox1825" class="checkboxage" checked>
+                <p class="checkboxText"> 18-25</p>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkbox2635" class="checkboxage" checked>
+                <p class="checkboxText"> 26-35</p>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkbox3645" class="checkboxage" checked>
+                <p class="checkboxText"> 36-45</p>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkbox46" class="checkboxage" checked>
+                <p class="checkboxText"> 46+</p>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <br>
+    <h3 class="aboutHeader3">
+        Explanation
+    </h3>
+    <p class="aboutText">
+        In this visual you can see the 3 cocktails separated from the TasteLab taseting sessions, each in their own
+        column. Every individual dot, dancing in the visual through time, represents one emotion form one participant.
+        This means that every participant has 7 dots per cocktail representing them. The higher the dot is located on
+        the page, the stronger the emotion at that given time. The time slider makes it possible to see the change of
+        emotions from the participants while experiencing the cocktails. The experience includes smelling and drinking
+        the cocktail.
+        <br> <br>
+        To get more information about a certain participant, just hover your cursor above the dot you want to inspect.
+        This will show the participant, their age and gender. To get even more information about that participant, you
+        can click on a dot. This will bring you to a new page with a new visual representation from that participant.
+        It is also possible to select and deselect different filters such as emotions, gender, or age, which changes the
+        scope of the visual.
+
+    </p>
+
+    <div class="barchartContainer">
+        <h1 class="averageTitle">
+            Average Emotions
+        </h1>
+    </div>
+
+    <br>
+    <h3 class="aboutHeader3">
+        Explanation
+    </h3>
+    <p class="aboutText">
+        In this visual you can see the 3 cocktails separated in their own row. The width of the bars represents the
+        average percentage of emotion measured across all participants.
+        The colors used are the same as in the visual on the top of this page.
+    </p>
+
+    <br>
+    <br>
+
+
     <script src="https://d3js.org/d3.v6.min.js"></script>
-    <script>
-
-        $(document).ready(function () {
-            var val;
-            var inte = setInterval(function () {
-                val = $('#slider').val();
-                val = parseInt(val) + 10000000000;
-                $('#slider').val(val);
-                $('#value').val(val);
-                if (val > $('#slider').attr('max')) {
-                    clearInterval(inte);
-                }
-            }, 10000);
-        });
-
-        let myData;
-        let height = 700;
-        let width = 1500;
-
-        let margin = {
-            top: 30,
-            right: 50,
-            left: 50,
-            bottom: 30
-        };
-
-
-        (async function () {
-
-            myData = await d3.csv("data.csv");
-            loadData(1);
-            makeVisual();
-
-        })()
-
-
-        let slider = document.getElementById("myRange");
-        let output = document.getElementById("demo");
-        output.innerHTML = slider.value;
-        let finalArray = [];
-
-
-
-
-        slider.oninput = function () {
-            output.innerHTML = this.value;
-
-            loadData(this.value);
-
-            makeVisual();
-
-        }
-
-        function loadData(value) {
-            const type = "P1";
-            let participantArray = [];
-            let previousParticipant;
-            finalArray = [];
-
-            for (let i = 0; i < myData.length; i++) {
-                if (myData[i].Participant == previousParticipant) {
-                    if (myData[i].EventMarker == type) {
-                        participantArray.push(myData[i]);
-                        previousParticipant = myData[i].Participant;
-                    }
-                }
-                else {
-                    if (participantArray.length != 0) {
-                        let scale = 20000 / participantArray.length;
-                        let index = Math.floor(value / scale);
-                        console.log(index);
-                        finalArray.push(participantArray[index]);
-                        participantArray = [];
-                    }
-                    participantArray.push(myData[i]);
-
-                    previousParticipant = myData[i].Participant;
-                }
-            }
-            if (participantArray != []) {
-                let scale = 20000 / participantArray.length;
-                let index = Math.floor(value / scale);
-                finalArray.push(participantArray[index]);
-            }
-        }
-
-
-        let svg = d3.select("body").append("svg")
-            .attr("viewBox", `0 0 ${width} ${height}`)
-            .style("width", width)
-            .style("height", height)
-            .style("background", "white");
-
-
-        const xScale = d3.scaleBand()
-            .domain(["Cocktail 1"])
-            .range([0, width - margin.left - margin.right]);
-
-        const yScale = d3.scaleLinear()
-            .domain([0, 1])
-            .range([height - margin.bottom - margin.top, 0]);
-
-        const axisContainer = svg.append("g")
-            .attr("transform", `translate(${margin.left}, ${margin.top})`);
-
-        axisContainer.append("g")
-            .attr("transform", `translate(0, ${height - margin.top - margin.bottom})`)
-            .style("color", "black")
-            .call(d3.axisBottom(xScale));
-
-        axisContainer.append("g")
-            .style("color", "black")
-            .call(d3.axisLeft(yScale));
-
-        function makeVisual() {
-
-            d3.selectAll("circle").remove();
-
-
-            let svg = d3.select("svg")
-
-
-
-
-            let update = axisContainer.selectAll("circle").data(finalArray);
-
-
-
-            let enter = update.enter();
-
-
-
-
-
-            enter.append("circle")
-                .attr("cx", function (d, i) {
-                    return Math.floor(Math.random() * (width - margin.left - margin.right));
-                })
-                .attr("cy", d => yScale(d.Happy))
-                .attr("r", 2)
-                .attr("class", "happy")
-                .style("fill", "orange");
-
-            enter.append("circle")
-                .attr("cx", function (d, i) {
-                    return Math.floor(Math.random() * (width - margin.left - margin.right));
-                })
-                .attr("cy", d => yScale(d.Sad))
-                .attr("r", 2)
-                .attr("class", "sad")
-                .style("fill", "blue");
-
-            enter.append("circle")
-                .attr("cx", function (d, i) {
-                    return Math.floor(Math.random() * (width - margin.left - margin.right));
-                })
-                .attr("cy", d => yScale(d.Angry))
-                .attr("r", 2)
-                .attr("class", "angry")
-                .style("fill", "red");
-
-            enter.append("circle")
-                .attr("cx", function (d, i) {
-                    return Math.floor(Math.random() * (width - margin.left - margin.right));
-                })
-                .attr("cy", d => yScale(d.Surprised))
-                .attr("r", 2)
-                .style("fill", "green");
-
-            enter.append("circle")
-                .attr("cx", function (d, i) {
-                    return Math.floor(Math.random() * (width - margin.left - margin.right));
-                })
-                .attr("cy", d => yScale(d.Scared))
-                .attr("r", 2)
-                .style("fill", "purple");
-
-            enter.append("circle")
-                .attr("cx", function (d, i) {
-                    return Math.floor(Math.random() * (width - margin.left - margin.right));
-                })
-                .attr("cy", d => yScale(d.Disgusted))
-                .attr("r", 2)
-                .style("fill", "black");
-
-            //let exit = update.exit().remove();
-
-        }
-    </script>
-
+    <script src="js/filters.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/loaddata.js"></script>
+    <script src="js/visual.js"></script>
 
 </body>
 
