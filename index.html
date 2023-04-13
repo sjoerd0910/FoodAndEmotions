@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cocktails and emotions</title>
+    <title>Cocktails and emotions - Start</title>
     <link rel="icon" type="image/x-icon" href="img/cocktailGlass.png">
 
     <!-- Social: -->
@@ -21,6 +21,7 @@
 </head>
 
 <body>
+
 
     <div class="toptext">
         <h1 class="titleHome">
@@ -58,10 +59,17 @@
         </div>
 
         <div class="checkboxContainer">
-            <a id="checkboxFemale" class="GenderCheckbox" onclick="ToggleFemale()"><img src="img/femaleblack.png"
-                    alt="Unchecked woman symbol" id="FemaleImage" class="GenderImage"></a>
-            <a id="checkboxMale" class="GenderCheckbox" onclick="ToggleMale()"><img src="img/maleblack.png"
-                    alt="Unchecked man symbol" id="MaleImage" class="GenderImage"></a>
+            <div class="checkbox">
+                <p class="checkboxHeaderText">Gender:</p>
+
+                <input type="checkbox" id="checkboxFemale" class="GenderCheckbox" checked>
+                <p class="checkboxText"> Female</p>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkboxMale" class="GenderCheckbox" checked>
+                <p class="checkboxText"> Male</p>
+            </div>
 
             <div class="checkbox">
                 <p class="checkboxHeaderText">Age:</p>
@@ -90,25 +98,38 @@
 
     </div>
 
-    <br>
-    <h3 class="aboutHeader3">
-        Explanation
-    </h3>
-    <p class="aboutText">
-        In this visual you can see the 3 cocktails separated from the TasteLab taseting sessions, each in their own
-        column. Every individual dot, dancing in the visual through time, represents one emotion form one participant.
-        This means that every participant has 7 dots per cocktail representing them. The higher the dot is located on
-        the page, the stronger the emotion at that given time. The time slider makes it possible to see the change of
-        emotions from the participants while experiencing the cocktails. The experience includes smelling and drinking
-        the cocktail.
-        <br> <br>
-        To get more information about a certain participant, just hover your cursor above the dot you want to inspect.
-        This will show the participant, their age and gender. To get even more information about that participant, you
-        can click on a dot. This will bring you to a new page with a new visual representation from that participant.
-        It is also possible to select and deselect different filters such as emotions, gender, or age, which changes the
-        scope of the visual.
 
-    </p>
+    <br>
+    <div class="aboutTextContainer">
+        <h3 class="aboutHeader3">
+            Explanation
+        </h3>
+        <p class="aboutText">
+            In this visual you can see the 3 cocktails separated from the TasteLab taseting sessions, each in their own
+            column. Every individual dot, dancing in the visual through time, represents one emotion form one
+            participant.
+            This means that every participant has 7 dots per cocktail representing them. The higher the dot is located
+            on
+            the page, the stronger the emotion at that given time. The time slider makes it possible to see the change
+            of
+            emotions from the participants while experiencing the cocktails. The experience includes smelling and
+            drinking
+            the cocktail.
+            <br> <br>
+            To get more information about a certain participant, just hover your cursor above the dot you want to
+            inspect.
+            This will show the participant, their age and gender. To get even more information about that participant,
+            you
+            can click on a dot. This will bring you to a new page with a new visual representation from that
+            participant.
+            It is also possible to select and deselect different filters such as emotions, gender, or age, which changes
+            the
+            scope of the visual.
+
+        </p>
+
+
+    </div>
 
     <div class="barchartContainer">
         <h1 class="averageTitle">
@@ -117,14 +138,16 @@
     </div>
 
     <br>
-    <h3 class="aboutHeader3">
-        Explanation
-    </h3>
-    <p class="aboutText">
-        In this visual you can see the 3 cocktails separated in their own row. The width of the bars represents the
-        average percentage of emotion measured across all participants.
-        The colors used are the same as in the visual on the top of this page.
-    </p>
+    <div class="aboutTextContainer">
+        <h3 class="aboutHeader3">
+            Explanation
+        </h3>
+        <p class="aboutText">
+            In this visual you can see the 3 cocktails separated in their own row. The width of the bars represents the
+            average percentage of emotion measured across all participants.
+            The colors used are the same as in the visual on the top of this page.
+        </p>
+    </div>
 
     <br>
     <br>

@@ -3,9 +3,6 @@ const slider = document.getElementById("timeSlider");
 const playButton = document.getElementById("playButton");
 const visual = document.getElementById("svgVisual");
 
-
-
-
 // Set the initial value of the slider and its range
 const minValue = 0;
 const maxValue = 20000;
@@ -21,6 +18,7 @@ let isPlaying = true;
 function togglePlaying(){
     isPlaying = !isPlaying; // Toggle the boolean variable
 
+    // Change icon in playpausebutton
     if(isPlaying){
         document.getElementById("playpauseButton").src="img/pause.png";
     }
@@ -29,9 +27,6 @@ function togglePlaying(){
     }
 
 }
-
-
-
 
 // Define the function to update the slider value
 function updateSlider() {
@@ -65,6 +60,14 @@ slider.oninput = function () {
 
     isPlaying = false; // Set boolean value to false to stop playing
 
+    // Change icon in playpausebutton
+    if(isPlaying){
+        document.getElementById("playpauseButton").src="img/pause.png";
+    }
+    else{
+        document.getElementById("playpauseButton").src="img/play.png";
+    }
+    
     //update the graph visual
     updateVisual();
 

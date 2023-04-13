@@ -9,7 +9,7 @@ let margin = {
     left: 20,
     bottom: 30,
     inbetween: 100,
-    barchartleft: 150
+    barchartleft: 170
 };
 
 // Create SVG for visual
@@ -93,6 +93,7 @@ function makeVisual() {
     // Get all cicles and put in variable with enter functionality
     let enter = axisContainer.selectAll("circle").data(finalArray).enter();
 
+    // Create happy circles if checkbox is active
     if (happyBox) {
         enter.append("circle")
             .attr("cx", function (d, i) {
@@ -103,6 +104,7 @@ function makeVisual() {
             .attr("class", "happy");
     }
 
+    // Create sad circles if checkbox is active
     if (sadBox) {
         enter.append("circle")
             .attr("cx", function (d, i) {
@@ -113,6 +115,7 @@ function makeVisual() {
             .attr("class", "sad");
     }
 
+    // Create angry circles if checkbox is active
     if (angryBox) {
         enter.append("circle")
             .attr("cx", function (d, i) {
@@ -123,6 +126,7 @@ function makeVisual() {
             .attr("class", "angry");
     }
 
+    // Create surprised circles if checkbox is active
     if (surprisedBox) {
         enter.append("circle")
             .attr("cx", function (d, i) {
@@ -133,6 +137,7 @@ function makeVisual() {
             .attr("class", "surprised");
     }
 
+    // Create scared circles if checkbox is active
     if (scaredBox) {
         enter.append("circle")
             .attr("cx", function (d, i) {
@@ -143,6 +148,7 @@ function makeVisual() {
             .attr("class", "scared");
     }
 
+    // Create disgusted circles if checkbox is active
     if (disgustedBox) {
         enter.append("circle")
             .attr("cx", function (d, i) {
@@ -153,6 +159,7 @@ function makeVisual() {
             .attr("class", "disgusted");
     }
 
+    // Create neutral circles if checkbox is active
     if (neutralBox) {
         enter.append("circle")
             .attr("cx", function (d, i) {
@@ -164,9 +171,10 @@ function makeVisual() {
     }
 
 
-    //essential for hover functionality
+    // Create for hover functionality on mouseover
     d3.selectAll("circle")
         .on("mouseover", function (event, d) {
+            // Set cocktail name in variable
             let cocktail = "";
             if (d.EventMarker == "P1") {
                 cocktail = "Cocktail 1 - Regular";
@@ -177,10 +185,12 @@ function makeVisual() {
             else if (d.EventMarker == "P3") {
                 cocktail = "Cocktail 3 - Bitter";
             }
+            // Increase size and style of pointer
             d3.select(this)
                 .transition()
                 .duration(100)
-                .attr("r", 8);
+                .attr("r", 8)
+                .style("cursor", "pointer");
             tooltip.transition()
                 .duration(200)
                 .style("opacity", 1);
@@ -190,37 +200,34 @@ function makeVisual() {
                 .style("top", (event.pageY - 28) + "px");
         })
         .on("mouseout", function (d) {
+            // Decrease size and style of pointer
             d3.select(this)
                 .transition()
                 .duration(100)
-                .attr("r", 4);
+                .attr("r", 4)
+                .style("cursor", "default");
             tooltip.transition()
                 .duration(200)
                 .style("opacity", 0);
         })
 
-        // navigating to the next visual
+        // Navigating to the next visual on click
         .on("click", function (event, d) {
             // get the link to the new HTML page
             const link = "uservisual.html";
 
             // get the current participant to be able to give the participant number to the next html page
             sessionStorage.setItem("currentParticipant", d.Participant);
-
             sessionStorage.setItem("currentCocktail", d.EventMarker);
-
             sessionStorage.setItem("currentGender", d.Gender); 
-            
             sessionStorage.setItem("currentAge", d.Age);
 
             // navigate to the new HTML page with the query string
             window.location.href = link;
-        })
-        ;
-
-
+        });
 }
 
+// Define function to get width from element and randomly set x axis based on margins
 function getWidth(eventMarker) {
     let individualWidth = (width - margin.inbetween - margin.inbetween - margin.left - margin.right) / 3;
     if (eventMarker == "P1") {
@@ -268,7 +275,7 @@ baraxisContainer.append("g")
     .call(d3.axisLeft(baryScale));
 
 
-
+// Define function to make bar chart on start page
 function MakeBarchart() {
     // Load new data
     CalculateBarchart();
@@ -276,9 +283,9 @@ function MakeBarchart() {
     // Get svg and put in variable
     let barsvg = d3.select(".barchart")
 
-    let enter = baraxisContainer.selectAll("rect").data(barchartArray).enter();
-
     // cocktail 1
+
+    // Create cocktail 1 happy bar
     barchart.append("rect")
         .attr("x", margin.barchartleft)
         .attr("y", 75)
@@ -286,6 +293,7 @@ function MakeBarchart() {
         .attr("width", barchartArray.cocktail1.happy)
         .attr("class", "happy");
 
+    // Create cocktail 1 sad bar
     barchart.append("rect")
         .attr("x", margin.barchartleft + barchartArray.cocktail1.happy)
         .attr("y", 75)
@@ -293,6 +301,7 @@ function MakeBarchart() {
         .attr("width", barchartArray.cocktail1.sad)
         .attr("class", "sad");
 
+    // Create cocktail 1 angry bar
     barchart.append("rect")
         .attr("x", margin.barchartleft + barchartArray.cocktail1.happy + barchartArray.cocktail1.sad)
         .attr("y", 75)
@@ -300,6 +309,7 @@ function MakeBarchart() {
         .attr("width", barchartArray.cocktail1.angry)
         .attr("class", "angry");
 
+    // Create cocktail 1 surprised bar
     barchart.append("rect")
         .attr("x", margin.barchartleft + barchartArray.cocktail1.happy + barchartArray.cocktail1.sad + barchartArray.cocktail1.angry)
         .attr("y", 75)
@@ -307,6 +317,7 @@ function MakeBarchart() {
         .attr("width", barchartArray.cocktail1.surprised)
         .attr("class", "surprised");
 
+    // Create cocktail 1 scared bar
     barchart.append("rect")
         .attr("x", margin.barchartleft + barchartArray.cocktail1.happy + barchartArray.cocktail1.sad + barchartArray.cocktail1.angry + barchartArray.cocktail1.surprised)
         .attr("y", 75)
@@ -314,6 +325,7 @@ function MakeBarchart() {
         .attr("width", barchartArray.cocktail1.scared)
         .attr("class", "scared");
 
+    // Create cocktail 1 disgusted bar
     barchart.append("rect")
         .attr("x", margin.barchartleft + barchartArray.cocktail1.happy + barchartArray.cocktail1.sad + barchartArray.cocktail1.angry + barchartArray.cocktail1.surprised + barchartArray.cocktail1.scared)
         .attr("y", 75)
@@ -321,6 +333,7 @@ function MakeBarchart() {
         .attr("width", barchartArray.cocktail1.disgusted)
         .attr("class", "disgusted");
 
+    // Create cocktail 1 neutral bar
     barchart.append("rect")
         .attr("x", margin.barchartleft + barchartArray.cocktail1.happy + barchartArray.cocktail1.sad + barchartArray.cocktail1.angry + barchartArray.cocktail1.surprised + barchartArray.cocktail1.scared + barchartArray.cocktail1.disgusted)
         .attr("y", 75)
@@ -330,6 +343,8 @@ function MakeBarchart() {
 
 
     //cocktail 2
+
+    // Create cocktail 2 happy bar
     barchart.append("rect")
         .attr("x", margin.barchartleft)
         .attr("y", 250)
@@ -337,6 +352,7 @@ function MakeBarchart() {
         .attr("width", barchartArray.cocktail2.happy)
         .attr("class", "happy");
 
+    // Create cocktail 2 sad bar
     barchart.append("rect")
         .attr("x", margin.barchartleft + barchartArray.cocktail2.happy)
         .attr("y", 250)
@@ -344,6 +360,7 @@ function MakeBarchart() {
         .attr("width", barchartArray.cocktail2.sad)
         .attr("class", "sad");
 
+    // Create cocktail 2 angry bar
     barchart.append("rect")
         .attr("x", margin.barchartleft + barchartArray.cocktail2.happy + barchartArray.cocktail2.sad)
         .attr("y", 250)
@@ -351,6 +368,7 @@ function MakeBarchart() {
         .attr("width", barchartArray.cocktail2.angry)
         .attr("class", "angry");
 
+    // Create cocktail 2 surprised bar
     barchart.append("rect")
         .attr("x", margin.barchartleft + barchartArray.cocktail2.happy + barchartArray.cocktail2.sad + barchartArray.cocktail2.angry)
         .attr("y", 250)
@@ -358,6 +376,7 @@ function MakeBarchart() {
         .attr("width", barchartArray.cocktail2.surprised)
         .attr("class", "surprised");
 
+    // Create cocktail 2 scared bar
     barchart.append("rect")
         .attr("x", margin.barchartleft + barchartArray.cocktail2.happy + barchartArray.cocktail2.sad + barchartArray.cocktail2.angry + barchartArray.cocktail2.surprised)
         .attr("y", 250)
@@ -365,6 +384,7 @@ function MakeBarchart() {
         .attr("width", barchartArray.cocktail2.scared)
         .attr("class", "scared");
 
+    // Create cocktail 2 disgusted bar
     barchart.append("rect")
         .attr("x", margin.barchartleft + barchartArray.cocktail2.happy + barchartArray.cocktail2.sad + barchartArray.cocktail2.angry + barchartArray.cocktail2.surprised + barchartArray.cocktail2.scared)
         .attr("y", 250)
@@ -372,6 +392,7 @@ function MakeBarchart() {
         .attr("width", barchartArray.cocktail2.disgusted)
         .attr("class", "disgusted");
 
+    // Create cocktail 2 neutral bar
     barchart.append("rect")
         .attr("x", margin.barchartleft + barchartArray.cocktail2.happy + barchartArray.cocktail2.sad + barchartArray.cocktail2.angry + barchartArray.cocktail2.surprised + barchartArray.cocktail2.scared + barchartArray.cocktail2.disgusted)
         .attr("y", 250)
@@ -380,6 +401,8 @@ function MakeBarchart() {
         .attr("class", "neutral");
 
     //cocktail 3
+
+    // Create cocktail 3 happy bar
     barchart.append("rect")
         .attr("x", margin.barchartleft)
         .attr("y", 425)
@@ -387,6 +410,7 @@ function MakeBarchart() {
         .attr("width", barchartArray.cocktail3.happy)
         .attr("class", "happy");
 
+    // Create cocktail 3 sad bar
     barchart.append("rect")
         .attr("x", margin.barchartleft + barchartArray.cocktail3.happy)
         .attr("y", 425)
@@ -394,6 +418,7 @@ function MakeBarchart() {
         .attr("width", barchartArray.cocktail3.sad)
         .attr("class", "sad");
 
+    // Create cocktail 3 angry bar
     barchart.append("rect")
         .attr("x", margin.barchartleft + barchartArray.cocktail3.happy + barchartArray.cocktail3.sad)
         .attr("y", 425)
@@ -401,6 +426,7 @@ function MakeBarchart() {
         .attr("width", barchartArray.cocktail3.angry)
         .attr("class", "angry");
 
+    // Create cocktail 3 surprised bar
     barchart.append("rect")
         .attr("x", margin.barchartleft + barchartArray.cocktail3.happy + barchartArray.cocktail3.sad + barchartArray.cocktail3.angry)
         .attr("y", 425)
@@ -408,6 +434,7 @@ function MakeBarchart() {
         .attr("width", barchartArray.cocktail3.surprised)
         .attr("class", "surprised");
 
+    // Create cocktail 3 scared bar
     barchart.append("rect")
         .attr("x", margin.barchartleft + barchartArray.cocktail3.happy + barchartArray.cocktail3.sad + barchartArray.cocktail3.angry + barchartArray.cocktail3.surprised)
         .attr("y", 425)
@@ -415,6 +442,7 @@ function MakeBarchart() {
         .attr("width", barchartArray.cocktail3.scared)
         .attr("class", "scared");
 
+    // Create cocktail 3 disgusted bar
     barchart.append("rect")
         .attr("x", margin.barchartleft + barchartArray.cocktail3.happy + barchartArray.cocktail3.sad + barchartArray.cocktail3.angry + barchartArray.cocktail3.surprised + barchartArray.cocktail3.scared)
         .attr("y", 425)
@@ -422,13 +450,12 @@ function MakeBarchart() {
         .attr("width", barchartArray.cocktail3.disgusted)
         .attr("class", "disgusted");
 
+    // Create cocktail 3 neutral bar
     barchart.append("rect")
         .attr("x", margin.barchartleft + barchartArray.cocktail3.happy + barchartArray.cocktail3.sad + barchartArray.cocktail3.angry + barchartArray.cocktail3.surprised + barchartArray.cocktail3.scared + barchartArray.cocktail3.disgusted)
         .attr("y", 425)
         .attr("height", 100)
         .attr("width", barchartArray.cocktail3.neutral)
         .attr("class", "neutral");
-
-
 }
 

@@ -15,7 +15,7 @@ body {
 h1 {
     font-family: 'Anton', sans-serif;
     color: #F1F1F1;
-    font-size: 90px;
+    font-size: 70px;
     margin-bottom: 0;
     margin-top: 0;
 }
@@ -48,11 +48,16 @@ h4 {
 
 }
 
+.aboutTextContainer{
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .aboutText {
     color: #F1F1F1;
     font-weight: 300;
     font-size: 16px;
-    margin-right: 50px;
     margin-top: 5px;
     line-height: 20px;
 
@@ -81,39 +86,7 @@ a {
     font-family: 'Open Sans', sans-serif;
 }
 
-.smallColumn {
-    float: left;
-    color: #F1F1F1;
-
-    /* hier moet nog naar de breedte gekeken worden */
-    /* width: 450px; */
-    width: 100%;
-    padding: 1px;
-    height: 0px;
-    font-size: 20px;
-    font-weight: 700;
-
-    display: flex;
-    flex-wrap: nowrap;
-}
-
-.column {
-    float: left;
-    color: #F1F1F1;
-
-    /* hier moet nog naar de breedte gekeken worden */
-    /* width: 450px; */
-    width: 30%;
-    padding: 1px;
-    height: 0px;
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 250px;
-
-}
-
 .columnHeader {
-    float: left;
     color: #F1F1F1;
     height: 0px;
     font-size: 20px;
@@ -121,36 +94,26 @@ a {
 
 }
 
-.columnLeft {
-    float: left;
-    color: #F1F1F1;
-    /* width: 250px; */
-    width: 45%;
-    padding: 0px;
-    height: 30px;
-    margin-top: 10px;
-    font-weight: 300;
-
+.columnContainer{
     display: flex;
-    flex-wrap: nowrap;
-
 }
 
-.columnRight {
-    float: left;
-    color: #F1F1F1;
-    /* width: 100px; */
-    width: 25%;
-    padding: 0px;
-    height: 30px;
-    margin-top: 10px;
-    font-weight: 300;
-
-    display: flex;
-    flex-wrap: nowrap;
-
-
+.column{
+    color:#F1F1F1;
+    margin-left: auto;
+    margin-right: auto;
 }
+
+.columnRight{
+    text-align: right;
+    margin-left: 10px;
+}
+
+.columnLeft{
+    text-align: left;
+}
+
+
 
 .toptext {
     position: absolute;
@@ -176,4 +139,13 @@ a {
 #cocktailVariable {
     color: #F1F1F1;
     margin-top: 5px;
+}
+
+#license{
+    color: #F1F1F1;
+}
+
+#license:visited{
+    color: #F1F1F1;
+    font-weight: bold;
 }

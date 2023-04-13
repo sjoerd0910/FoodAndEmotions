@@ -1,8 +1,15 @@
 // current participant number given by the previous html page
-var currentParticipant = sessionStorage.getItem("currentParticipant");
-var currentCocktail = sessionStorage.getItem("currentCocktail");
-var currentGender = sessionStorage.getItem("currentGender"); var currentAge = sessionStorage.getItem("currentAge");
+const currentParticipant = sessionStorage.getItem("currentParticipant");
+const currentCocktail = sessionStorage.getItem("currentCocktail");
+const currentGender = sessionStorage.getItem("currentGender"); 
+const currentAge = sessionStorage.getItem("currentAge");
 
+// Get and set text
+document.getElementById("participantTitle").innerHTML = `Participant ${currentParticipant} through time`;
+document.getElementById("cocktailTitle").innerHTML = cocktail;
+document.getElementById("cocktailVariable").innerHTML =`Gender: ${currentGender} &nbsp &nbsp Age: ${currentAge}`;
+
+// Set current cocktail name in variable
 let cocktail;
 if (currentCocktail == "P1") {
     cocktail = "Cocktail 1 - Regular";
@@ -14,10 +21,7 @@ else if (currentCocktail == "P3") {
     cocktail = "Cocktail 3 - Bitter";
 }
 
-document.getElementById("participantTitle").innerHTML = `Participant ${currentParticipant} through time`;
-document.getElementById("cocktailTitle").innerHTML = cocktail;
-document.getElementById("cocktailVariable").innerHTML =`Gender: ${currentGender} &nbsp &nbsp Age: ${currentAge}`;
-
+// Set sizes for viewBox
 let height = 500;
 let width = 1500;
 
@@ -25,34 +29,38 @@ let width = 1500;
 let margin = {
     top: 30,
     right: 20,
-    left: 35, //aangepast
+    left: 40, //aangepast
     bottom: 30,
     inbetween: 100
 };
 
+// Create SVG for visual
 let svg = d3.select(".uservisual").append("svg")
     .attr("viewBox", `0 0 ${width} ${height}`)
 
-
+// Create x scale in visual
 const xScale = d3.scaleBand()
     .domain(["Time"])
     .range([0, width - margin.left - margin.right]);
 
+// Create y scale in visual
 const yScale = d3.scaleLinear()
     .domain([0, 100])
     .range([height - margin.bottom - margin.top, 0]);
 
+// Create axiscontainer for visual
 const axisContainer = svg.append("g")
     .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
+// Add x axis line in visual
 axisContainer.append("g")
     .attr("transform", `translate(0, ${height - margin.top - margin.bottom})`)
     .call(d3.axisBottom(xScale));
 
+// Add y axis line in visual
 axisContainer.append("g")
     .style("color", "white")
     .call(d3.axisLeft(yScale));
-
 
 //essential for hover functionality
 let tooltip = d3.select(".uservisual")
@@ -60,11 +68,10 @@ let tooltip = d3.select(".uservisual")
     .style("opacity", 0)
     .attr("class", "tooltip");
 
-
+// Create array to put final data in
 let finalArrayParticipant = [];
 
-
-
+// Define async function which loads when page is loaded
 (async function () {
     // Put data from csv into rawData variable
     let rawData = await d3.csv("data/data.csv");
@@ -74,7 +81,9 @@ let finalArrayParticipant = [];
             finalArrayParticipant.push(rawData[i]);
         }
     }
+    // Create scale to create width size
     let scale = (width - margin.left - margin.right) / finalArrayParticipant.length;
+    // Set scaled elements in finalArrayParticipant
     for (let j = 0; j < finalArrayParticipant.length; j++) {
         finalArrayParticipant[j].VideoTime = j * scale;
         finalArrayParticipant[j].Happy = finalArrayParticipant[j].Happy * 100;
@@ -86,15 +95,15 @@ let finalArrayParticipant = [];
         finalArrayParticipant[j].Neutral = finalArrayParticipant[j].Neutral * 100;
     }
 
-    console.log(finalArrayParticipant);
-
+    // Create variable to set lines
     let enter = svg.selectAll(".userline").data(finalArrayParticipant).enter();
 
-
+    // Define 1st width point
     let x1 = function (d, i) {
         return d.VideoTime + margin.left;
     };
 
+    // Define 2nd width point
     let x2 = function (d, i) {
         if (i < (finalArrayParticipant.length - 1)) {
             return finalArrayParticipant[(i + 1)].VideoTime + margin.left;
@@ -104,7 +113,7 @@ let finalArrayParticipant = [];
         }
     };
 
-    //Happy
+    // Create happy lines
     enter.append("line")
         .attr("x1", x1)
         .attr("x2", x2)
@@ -123,7 +132,7 @@ let finalArrayParticipant = [];
         .attr("class", "happy");
 
 
-    //Sad
+    // Create sad lines
     enter.append("line")
         .attr("x1", x1)
         .attr("x2", x2)
@@ -141,7 +150,7 @@ let finalArrayParticipant = [];
         .attr("class", "userline")
         .attr("class", "sad");
 
-    //Angry
+    // Create angry lines
     enter.append("line")
         .attr("x1", x1)
         .attr("x2", x2)
@@ -159,7 +168,7 @@ let finalArrayParticipant = [];
         .attr("class", "userline")
         .attr("class", "angry");
 
-    //Surprised
+    // Create surprised lines
     enter.append("line")
         .attr("x1", x1)
         .attr("x2", x2)
@@ -177,7 +186,7 @@ let finalArrayParticipant = [];
         .attr("class", "userline")
         .attr("class", "surprised");
 
-    //Scared
+    // Create scared lines
     enter.append("line")
         .attr("x1", x1)
         .attr("x2", x2)
@@ -195,7 +204,7 @@ let finalArrayParticipant = [];
         .attr("class", "userline")
         .attr("class", "scared");
 
-    //Disgusted
+    // Create disgusted lines
     enter.append("line")
         .attr("x1", x1)
         .attr("x2", x2)
@@ -213,7 +222,7 @@ let finalArrayParticipant = [];
         .attr("class", "userline")
         .attr("class", "disgusted");
 
-    //Neutral
+    // Create neutral lines
     enter.append("line")
         .attr("x1", x1)
         .attr("x2", x2)
@@ -233,15 +242,9 @@ let finalArrayParticipant = [];
         .style("stroke-width", "3px");
 
 
-    //essential for hover functionality
+    // Create hover functionality on mouseover
     d3.selectAll("line")
         .on("mouseover", function (event, d) {
-            // hier willen we de lijn nog dikker maken bij een hover
-            // d3.selectAll(`${this.attr("class")}`)
-            //     .transition()
-            //     .duration(100)
-            //     .style("stroke-width", "3px");
-
             tooltip.transition()
                 .duration(200)
                 .style("opacity", 1);
@@ -251,11 +254,6 @@ let finalArrayParticipant = [];
                 .style("top", (event.pageY - 28) + "px");
         })
         .on("mouseout", function (d) {
-            // d3.select(this)
-            //     .transition()
-            //     .duration(100)
-            //     .style("stroke-width", "1px");
-
             tooltip.transition()
                 .duration(200)
                 .style("opacity", 0);

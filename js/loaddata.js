@@ -8,7 +8,7 @@ let barchartArray = [];
 (async function () {
     // Put data from csv into rawData variable
     rawData = await d3.csv("data/data.csv");
-    // Load data and make visual for the first time when loading web page
+    // Load data and make visuals for the first time when loading web page
     makeVisual();
     MakeBarchart();
 
@@ -33,12 +33,12 @@ function loadData() {
         // If the current participant is equal to the previous participant and if the current EventMarker is equal to the 
         // previous EventMarker, the current iteration can be added to the participantArray
         if (rawData[i].Participant == previousParticipant && rawData[i].EventMarker == previousEventMarker) {
-            if (rawData[i].Gender == "Female" && femaleBox) {
+            if (rawData[i].Gender == "Female" && femaleBox.checked) {
                 if (inAgeRange(rawData[i].Age)) {
                     participantArray.push(rawData[i]);
                 }
             }
-            else if (rawData[i].Gender == "Male" && maleBox) {
+            else if (rawData[i].Gender == "Male" && maleBox.checked) {
                 if (inAgeRange(rawData[i].Age)) {
                     participantArray.push(rawData[i]);
                 }
@@ -64,12 +64,13 @@ function loadData() {
                 participantArray = [];
             }
 
-            if (rawData[i].Gender == "Female" && femaleBox) {
+            // if current participants' gender is checked put in participantArray
+            if (rawData[i].Gender == "Female" && femaleBox.checked) {
                 if (inAgeRange(rawData[i].Age)) {
                     participantArray.push(rawData[i]);
                 }
             }
-            else if (rawData[i].Gender == "Male" && maleBox) {
+            else if (rawData[i].Gender == "Male" && maleBox.checked) {
                 if (inAgeRange(rawData[i].Age)) {
                     participantArray.push(rawData[i]);
                 }
@@ -90,6 +91,7 @@ function loadData() {
 
 }
 
+// Define function to check if person is in checked age range
 function inAgeRange(age) {
     if (parseInt(age) >= 18 && parseInt(age) <= 25 && age1825Box.checked) {
         return true;
@@ -108,10 +110,12 @@ function inAgeRange(age) {
     }
 }
 
+// Define function to calculate the values for the bar chart
 function CalculateBarchart() {
     // Empty bar chart array
     barchartArray = [];
 
+    // Define cocktail arrays with numbers for emotions
     let cocktail1 = {
         happy: 0,
         sad: 0,
@@ -177,7 +181,7 @@ function CalculateBarchart() {
         // the previous eventmarker, the participantArray is filled with every event from one drink from one participant. 
         else {
             if (participantArray.length != 0) {
-
+                // Set participants' emotions with GetAverage function
                 if (previousEventMarker == "P1") {
                     cocktail1.happy += GetAverage(participantArray).happy;
                     cocktail1.sad += GetAverage(participantArray).sad;
@@ -209,7 +213,8 @@ function CalculateBarchart() {
                 // Empty participantArray to use in the next iteration of the loop
                 participantArray = [];
             }
-
+            
+            // if current participants' gender is checked put in participantArray
             if (rawData[i].Gender == "Female" && femaleBox) {
                 if (inAgeRange(rawData[i].Age)) {
                     participantArray.push(rawData[i]);
@@ -227,7 +232,7 @@ function CalculateBarchart() {
 
         }
     }
-    // Calculate based on position of the slider which frame in the array needs to be displayed, only used for the last iteration
+    // Set participants' emotions with GetAverage function, only used for the last iteration
     if (participantArray.length != 0) {
         if (previousEventMarker == "P1") {
             cocktail1.happy += GetAverage(participantArray).happy;
@@ -258,18 +263,20 @@ function CalculateBarchart() {
         }
     }
 
+    // Add all emotions value for total
     let cocktail1total = cocktail1.happy + cocktail1.sad + cocktail1.angry + cocktail1.surprised + cocktail1.scared + cocktail1.disgusted + cocktail1.neutral;
     let cocktail2total = cocktail2.happy + cocktail2.sad + cocktail2.angry + cocktail2.surprised + cocktail2.scared + cocktail2.disgusted + cocktail2.neutral;
     let cocktail3total = cocktail3.happy + cocktail3.sad + cocktail3.angry + cocktail3.surprised + cocktail3.scared + cocktail3.disgusted + cocktail3.neutral;
 
+    // Calculate new values for position/ size of the bar with MakeDivision function
     cocktail1 = MakeDivision(cocktail1, cocktail1total);
     cocktail2 = MakeDivision(cocktail2, cocktail2total);
     cocktail3 = MakeDivision(cocktail3, cocktail3total);
 
     barchartArray = { cocktail1, cocktail2, cocktail3 };
-    console.log(barchartArray);
 }
 
+// Define function to make divisions
 function MakeDivision(calcCocktail, Cocktailtotal) {
     calcCocktail.happy = calcCocktail.happy / Cocktailtotal * (width - margin.right - margin.barchartleft);
     calcCocktail.sad = calcCocktail.sad / Cocktailtotal * (width - margin.right - margin.barchartleft);
@@ -281,6 +288,7 @@ function MakeDivision(calcCocktail, Cocktailtotal) {
     return calcCocktail;
 }
 
+// Define function to get average from array
 function GetAverage(participantArray) {
     let total = {
         happy: 0,
