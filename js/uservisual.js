@@ -86,8 +86,6 @@ let finalArrayParticipant = [];
         finalArrayParticipant[j].Neutral = finalArrayParticipant[j].Neutral * 100;
     }
 
-    console.log(finalArrayParticipant);
-
     let enter = svg.selectAll(".userline").data(finalArrayParticipant).enter();
 
 

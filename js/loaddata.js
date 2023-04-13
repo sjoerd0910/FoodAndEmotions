@@ -267,7 +267,6 @@ function CalculateBarchart() {
     cocktail3 = MakeDivision(cocktail3, cocktail3total);
 
     barchartArray = { cocktail1, cocktail2, cocktail3 };
-    console.log(barchartArray);
 }
 
 function MakeDivision(calcCocktail, Cocktailtotal) {
