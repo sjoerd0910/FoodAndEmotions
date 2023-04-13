@@ -239,6 +239,7 @@ let finalArrayParticipant = [];
             //     .transition()
             //     .duration(100)
             //     .style("stroke-width", "3px");
+            
 
             tooltip.transition()
                 .duration(200)

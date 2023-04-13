@@ -180,7 +180,8 @@ function makeVisual() {
             d3.select(this)
                 .transition()
                 .duration(100)
-                .attr("r", 8);
+                .attr("r", 8)
+                .style("cursor", "pointer");
             tooltip.transition()
                 .duration(200)
                 .style("opacity", 1);
@@ -193,7 +194,8 @@ function makeVisual() {
             d3.select(this)
                 .transition()
                 .duration(100)
-                .attr("r", 4);
+                .attr("r", 4)
+                .style("cursor", "default");
             tooltip.transition()
                 .duration(200)
                 .style("opacity", 0);
