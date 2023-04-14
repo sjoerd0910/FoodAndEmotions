@@ -5,7 +5,7 @@ There is a strong connection between taste and emotion, different flavors can tr
 This project is based on the FaceReader data gathering sessions at TasteLab. This project is initiated on the need to visualize 
 these results and make them interactive to the end user.
 
-YOu can visit this program at the URL: https://sjoerd0910.github.io/FoodAndEmotions/
+You can visit this program at the URL: https://sjoerd0910.github.io/FoodAndEmotions/
 
 HOW TO RUN THIS PROGRAM LOCALLY?
 
