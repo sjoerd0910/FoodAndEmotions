@@ -4,11 +4,6 @@ const currentCocktail = sessionStorage.getItem("currentCocktail");
 const currentGender = sessionStorage.getItem("currentGender"); 
 const currentAge = sessionStorage.getItem("currentAge");
 
-// Get and set text
-document.getElementById("participantTitle").innerHTML = `Participant ${currentParticipant} through time`;
-document.getElementById("cocktailTitle").innerHTML = cocktail;
-document.getElementById("cocktailVariable").innerHTML =`Gender: ${currentGender} &nbsp &nbsp Age: ${currentAge}`;
-
 // Set current cocktail name in variable
 let cocktail;
 if (currentCocktail == "P1") {
@@ -20,6 +15,11 @@ else if (currentCocktail == "P2") {
 else if (currentCocktail == "P3") {
     cocktail = "Cocktail 3 - Bitter";
 }
+
+// Get and set text
+document.getElementById("participantTitle").innerHTML = `Participant ${currentParticipant} through time`;
+document.getElementById("cocktailTitle").innerHTML = cocktail;
+document.getElementById("cocktailVariable").innerHTML =`Gender: ${currentGender} &nbsp &nbsp Age: ${currentAge}`;
 
 // Set sizes for viewBox
 let height = 500;
