@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocktails and emotions - Start</title>
+    <link rel="icon" type="image/x-icon" href="img/cocktailGlass.png">
+
+    <!-- Social: -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cocktails & Emotions through time">
+    <meta name="twitter:description" content="Visualization of the emotions expressed while experiencing cocktails.">
+    <!-- content below needs to be changed when code is placed in different github/location for the social preview to work -->
+    <meta name="twitter:image" content="https://sjoerd0910.github.io/FoodAndEmotions/img/preview.png">
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/visualstyle.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+
+    <div class="toptext">
+        <h1 class="titleHome">
+            Cocktails & Emotions
+        </h1>
+        <h1 class="titleHome">
+            through time
+        </h1>
+    </div>
+    <a class="info" href="about.html">
+        <img src="img/info.png" alt="info button" id="infoImage"></img>
+    </a>
+
+
+
+    <div class="scatterplotContainer" onclick="togglePlaying()">
+    </div>
+
+    <div class="slidecontainer">
+        <img src="img/pause.png" alt="Pause button" id="playpauseButton" onclick="togglePlaying()">
+        <input type="range" class="slider" id="timeSlider">
+    </div>
+
+
+    <div class="filters">
+
+        <div class="checkboxContainer">
+            <a id="checkboxHappy" class="EmotionsCheckbox" onclick="ToggleHappy()">Happy</a>
+            <a id="checkboxSad" class="EmotionsCheckbox" onclick="ToggleSad()">Sad</a>
+            <a id="checkboxAngry" class="EmotionsCheckbox" onclick="ToggleAngry()">Angry</a>
+            <a id="checkboxSurprised" class="EmotionsCheckbox" onclick="ToggleSurprised()">Surprised</a>
+            <a id="checkboxScared" class="EmotionsCheckbox" onclick="ToggleScared()">Scared</a>
+            <a id="checkboxDisgusted" class="EmotionsCheckbox" onclick="ToggleDisgusted()">Disgusted</a>
+            <a id="checkboxNeutral" class="EmotionsCheckbox" onclick="ToggleNeutral()">Neutral</a>
+        </div>
+
+        <div class="checkboxContainer">
+            <div class="checkbox">
+                <p class="checkboxHeaderText">Gender:</p>
+
+                <input type="checkbox" id="checkboxFemale" class="GenderCheckbox" checked>
+                <p class="checkboxText"> Female</p>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkboxMale" class="GenderCheckbox" checked>
+                <p class="checkboxText"> Male</p>
+            </div>
+
+            <div class="checkbox">
+                <p class="checkboxHeaderText">Age:</p>
+
+                <input type="checkbox" id="checkbox1825" class="checkboxage" checked>
+                <p class="checkboxText"> 18-25</p>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkbox2635" class="checkboxage" checked>
+                <p class="checkboxText"> 26-35</p>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkbox3645" class="checkboxage" checked>
+                <p class="checkboxText"> 36-45</p>
+            </div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="checkbox46" class="checkboxage" checked>
+                <p class="checkboxText"> 46+</p>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+    <br>
+    <div class="aboutTextContainer">
+        <h3 class="aboutHeader3">
+            Explanation
+        </h3>
+        <p class="aboutText">
+            In this visual you can see the 3 cocktails separated from the TasteLab taseting sessions, each in their own
+            column. Every individual dot, dancing in the visual through time, represents one emotion form one
+            participant.
+            This means that every participant has 7 dots per cocktail representing them. The higher the dot is located
+            on
+            the page, the stronger the emotion at that given time. The time slider makes it possible to see the change
+            of
+            emotions from the participants while experiencing the cocktails. The experience includes smelling and
+            drinking
+            the cocktail.
+            <br> <br>
+            To get more information about a certain participant, just hover your cursor above the dot you want to
+            inspect.
+            This will show the participant, their age and gender. To get even more information about that participant,
+            you
+            can click on a dot. This will bring you to a new page with a new visual representation from that
+            participant.
+            It is also possible to select and deselect different filters such as emotions, gender, or age, which changes
+            the
+            scope of the visual.
+
+        </p>
+
+
+    </div>
+
+    <div class="barchartContainer">
+        <h1 class="averageTitle">
+            Average Emotions
+        </h1>
+    </div>
+
+    <br>
+    <div class="aboutTextContainer">
+        <h3 class="aboutHeader3">
+            Explanation
+        </h3>
+        <p class="aboutText">
+            In this visual you can see the 3 cocktails separated in their own row. The width of the bars represents the
+            average percentage of emotion measured across all participants.
+            The colors used are the same as in the visual on the top of this page.
+        </p>
+    </div>
+
+    <br>
+    <br>
+
+
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/loaddata.js"></script>
+    <script src="js/visual.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,244 @@
+/* slider css properties */
+
+.slidecontainer {
+    width: 100%;
+    display: flex;
+}
+
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    margin-right: 1%;
+    margin-top: 8px;
+    width: 100%;
+    float: right;
+    height: 15px;
+    border-radius: 7.5px;
+    background: #5C5C5C;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+#playpauseButton {
+    height: 30px;
+    cursor: pointer;
+}
+
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #919090;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #919090;
+    cursor: pointer;
+}
+
+/* filters css properties */
+
+.legendContainer{
+    display: flex;
+}
+
+.filters {
+    background-color: #282828;
+    border-radius: 10px;
+    padding: 0.5%;
+    margin-top: 1em;
+
+}
+
+.checkboxContainer {
+    display: flex;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.checkbox {
+    display: flex;
+    margin-right: 0.5em;
+    margin-top: 0.5em;
+}
+
+input {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+.checkboxHeaderText {
+    color: #F1F1F1;
+    font-weight: 600;
+    font-size: large;
+    margin-right: 5px;
+    margin-left: 1em;
+} 
+
+.checkboxText {
+    color: #F1F1F1;
+}
+
+#checkboxHappy {
+    background-color: #008000;
+    margin-left: 1em;
+}
+
+#checkboxSad {
+    background-color: #2d36d6;
+}
+
+#checkboxAngry {
+    background-color: #d62d2d;
+}
+
+
+#checkboxSurprised {
+    background-color: #eded2d;
+}
+
+#checkboxScared {
+    background-color: #d68a2d;
+}
+
+#checkboxDisgusted {
+    background-color: #800080;
+}
+
+#checkboxNeutral {
+    background-color: #3f3e3e;
+    color: #F1F1F1;
+    margin-right: 1em;
+
+}
+
+#legendNeutral {
+    background-color: #8f8f8f;
+    margin-right: 1em;
+}
+
+.EmotionsCheckbox{
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.EmotionsCheckbox:hover{
+    filter: brightness(130%);
+}
+
+
+/* svg visual css properties */
+
+svg {
+    width: 100%;
+    background: transparent;
+}
+
+.scatterplotContainer {
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+g {
+    color: whitesmoke;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+}
+
+.happy {
+    fill: #008000;
+    stroke: #008000;
+    stroke-width: 3px;
+}
+
+.sad {
+    fill: #2d36d6;
+    stroke: #2d36d6;
+    stroke-width: 3px;
+}
+
+.angry {
+    fill: #d62d2d;
+    stroke: #d62d2d;
+    stroke-width: 3px;
+}
+
+.surprised {
+    fill: #eded2d;
+    stroke: #eded2d;
+    stroke-width: 3px;
+}
+
+.scared {
+    fill: #d68a2d;
+    stroke: #d68a2d;
+    stroke-width: 3px;
+}
+
+.disgusted {
+    fill: #800080;
+    stroke: #800080;
+    stroke-width: 3px;
+}
+
+.neutral {
+    fill: #8f8f8f;
+    stroke: #8f8f8f;
+    stroke-width: 3px;
+}
+
+.tooltip {
+    display: block;
+    position: absolute;
+    background-color: white;
+    border: solid 1px #eee;
+    border-radius: 5px;
+    padding: 5px;
+    pointer-events: none;
+}
+
+/* user visual style */
+
+.uservisual {
+    width: 100%;
+}
+
+.EmotionsLegend{
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-radius: 4px;
+    cursor: default;
+}
+
+/* live bar chart style */
+
+.barchartContainer {
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
