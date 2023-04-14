@@ -19,6 +19,6 @@ STEP 4: Choose the correct unpacked folder from step 1.
 
 STEP 5: Make sure the web server slider is turnes on and the status is 'STARTED'.
 
-STEP 6: CLick on the server URL.
+STEP 6: Click on the server URL.
 
 STEP 7: Stop web server once you no longer want to run the program locally.
