@@ -141,11 +141,15 @@ a {
     margin-top: 5px;
 }
 
-#license{
+.link{
     color: #F1F1F1;
 }
 
-#license:visited{
+.link:visited{
     color: #F1F1F1;
     font-weight: bold;
+}
+
+.aboutimage{
+    width: 100%;
 }
